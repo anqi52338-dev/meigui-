@@ -23,3 +23,13 @@ const PalaisCore = {
     return role.prompt + (active.length ? '\n\n以下是本次对话适用的世界书背景资料，请结合角色设定保持人物、关系和世界观一致：\n' + active.map(e => `【${e.name}】\n${e.content}`).join('\n\n') : '');
   }
 };
+Object.assign(PalaisCore, {
+  dateKey(date = new Date()) { return [date.getFullYear(),String(date.getMonth()+1).padStart(2,'0'),String(date.getDate()).padStart(2,'0')].join('-'); },
+  dayNumber(date) {const value=Date.parse(date+'T12:00:00Z');return value/86400000},
+  addDays(date,days){return new Date(Date.parse(date+'T12:00:00Z')+days*86400000).toISOString().slice(0,10)},
+  cycleInfo(records,defaultCycle=28){const starts=[...new Set(records.map(r=>r.start))].sort();const gaps=starts.slice(1).map((s,i)=>this.dayNumber(s)-this.dayNumber(starts[i])).filter(n=>n>0);const cycle=gaps.length?Math.round(gaps.slice(-6).reduce((a,b)=>a+b,0)/gaps.slice(-6).length):defaultCycle;return {cycle,next:starts.length?this.addDays(starts.at(-1),cycle):null,samples:gaps.length}},
+  memoryDue(memory,history,settings,now=Date.now()){const m=memory||{};const pending=history.length-(m.processed||0);const since=m.updatedAt||history[0]?.createdAt||now;return !!settings.enabled&&pending>0&&(pending>=settings.messages||(settings.daily&&now-since>=86400000));},
+  memoryContext(memory){if(!memory)return '';return [memory.pinned&&'用户固定记忆：\n'+memory.pinned,memory.summary&&'已整理的长期记忆：\n'+memory.summary].filter(Boolean).join('\n\n')},
+  cardReply(text){const match=text.match(/\[\[(红包|转账)\|([0-9]+(?:\.[0-9]{1,2})?)\|([^\]\n]{0,80})\]\]/);if(!match||Number(match[2])<=0||Number(match[2])>100000)return {content:text};return {content:text.replace(match[0],'').trim()||'送给你的一点心意。',card:{type:match[1]==='红包'?'redpacket':'transfer',amount:Number(match[2]).toFixed(2),note:match[3],status:'pending'}};},
+  async pinDigest(pin,salt,webCrypto=globalThis.crypto){if(!/^\d{6}$/.test(pin))throw Error('请输入 6 位数字密码');const material=await webCrypto.subtle.importKey('raw',new TextEncoder().encode(pin),'PBKDF2',false,['deriveBits']);const bytes=await webCrypto.subtle.deriveBits({name:'PBKDF2',salt:new Uint8Array(salt),iterations:150000,hash:'SHA-256'},material,256);return [...new Uint8Array(bytes)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+});

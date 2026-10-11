@@ -44,7 +44,7 @@ function openAppearance(r) {
   document.querySelector('#chooseBackground').onclick=()=>document.querySelector('#backgroundFile').click();
   document.querySelector('#backgroundFile').onchange=async e=>{const button=document.querySelector('#chooseBackground');button.disabled=true;try{const image=await prepareImage(e.target.files[0],1440);await mediaWrite('background:'+r.id,image);document.querySelector('#backgroundPreview').style.backgroundImage=`url("${image}")`;document.querySelector('#backgroundPreview').textContent='';renderConversation();toast('聊天背景已保存')}catch(err){toast(err.message)}finally{button.disabled=false;e.target.value=''}};
   document.querySelector('#removeBackground').onclick=async()=>{try{await mediaWrite('background:'+r.id,null);document.querySelector('#backgroundPreview').style.backgroundImage='';document.querySelector('#backgroundPreview').textContent='默认浅粉背景';renderConversation();toast('已恢复默认背景')}catch(err){toast(err.message)}};
-  document.querySelector('#appearanceRole').onclick=()=>{dialog.close();editRole(r.id)};
+  document.querySelector('#appearanceRole').onclick=()=>{dialog.close();r.members?editGroup(r.id):editRole(r.id)};
   document.querySelector('#appearanceBook').onclick=()=>{dialog.close();go('book')};
   document.querySelector('#closeAppearance').onclick=()=>dialog.close();dialog.showModal();
 }
