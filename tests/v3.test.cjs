@@ -1,0 +1,25 @@
+const {readFileSync}=require('node:fs'),{runInNewContext}=require('node:vm'),assert=require('node:assert/strict'),{webcrypto}=require('node:crypto');
+const core=runInNewContext(readFileSync('dist/core.js','utf8')+'\nPalaisCore;',{URL,TextEncoder,crypto:webcrypto,Date});
+(async()=>{
+  assert.equal(core.addDays('2026-02-27',3),'2026-03-02');
+  assert.equal(core.dayNumber('2026-10-11')-core.dayNumber('2026-10-01'),10);
+  const cycle=core.cycleInfo([{start:'2026-08-01'},{start:'2026-08-29'},{start:'2026-09-26'}]);assert.equal(cycle.cycle,28);assert.equal(cycle.next,'2026-10-24');
+  assert.equal(core.cycleInfo([],28).next,null);
+  assert.equal(core.cycleInfo([{start:'2026-09-26'},{start:'2026-09-26'}],30).samples,0);
+  const settings={enabled:true,messages:4,daily:true},now=Date.now();
+  assert.equal(core.memoryDue({},[{createdAt:now}],settings,now),false);
+  assert.equal(core.memoryDue({},Array.from({length:4},()=>({createdAt:now})),settings,now),true);
+  assert.equal(core.memoryDue({updatedAt:now-86400001,processed:2},[{}, {},{}],settings,now),true);
+  assert.equal(core.memoryDue({processed:3},[{},{},{}],settings,now),false);
+  assert.equal(core.memoryDue({},Array(10).fill({}),{...settings,enabled:false},now),false);
+  assert.match(core.memoryContext({pinned:'喜欢玫瑰',summary:'去了王都'}),/喜欢玫瑰/);
+  const card=core.cardReply('送给你。[[红包|52.00|今天开心]]');assert.equal(card.card.amount,'52.00');assert.equal(card.card.type,'redpacket');assert.equal(card.content,'送给你。');
+  assert.equal(core.cardReply('[[红包|0|无效]]').card,undefined);assert.equal(core.cardReply('[[转账|100001|无效]]').card,undefined);
+  const salt=Array(16).fill(7),hash=await core.pinDigest('654321',salt);assert.equal(hash.length,64);assert.equal(await core.pinDigest('654321',salt),hash);assert.notEqual(await core.pinDigest('654320',salt),hash);assert.notEqual(await core.pinDigest('654321',Array(16).fill(8)),hash);await assert.rejects(()=>core.pinDigest('12',salt));
+  const saved=new Map(),sent=[];let fail=false;
+  const life=readFileSync('dist/life.js','utf8');
+  const harness=runInNewContext(life+`\n({ consolidate, get:()=>memories, settings:()=>memorySettings, setMemory:(id,m)=>memories[id]=m });`,{localStorage:{getItem:k=>saved.get(k)||null,setItem:(k,v)=>saved.set(k,v)},PalaisCore:core,histories:{rose:Array.from({length:4},(_,i)=>({role:i%2?'assistant':'user',content:'我喜欢玫瑰'+i,createdAt:now})),lune:[{role:'user',content:'另一角色的消息'}]},roles:[{id:'rose',name:'玫瑰小姐'},{id:'lune',name:'月光先生'}],config:{base:'https://example.com/v1',model:'mock'},key:'test',profile:{name:'主人'},tab:'chat',Date,request:async(c,m)=>{sent.push(m);if(fail)throw Error('mock failure');return '用户喜欢玫瑰；与玫瑰小姐谈论王都。'},friendly:e=>e.message,toast:()=>{},document:{},setTimeout});
+  assert.equal(await harness.consolidate('rose',true),true);assert.equal(harness.get().rose.processed,4);assert.match(harness.get().rose.summary,/喜欢玫瑰/);assert.equal(harness.get().lune,undefined);assert.ok(!sent[0][1].content.includes('另一角色'));
+  fail=true;const before=harness.get().rose.summary;assert.equal(await harness.consolidate('rose',true),false);assert.equal(harness.get().rose.summary,before);assert.equal(harness.get().rose.processed,4);
+  console.log('28 checks passed: cycle dates, memory scheduling/isolation/failure recovery, virtual cards and salted PIN verification.');
+})().catch(err=>{console.error(err);process.exit(1)});
