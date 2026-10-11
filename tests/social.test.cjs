@@ -1,0 +1,28 @@
+const {readFileSync}=require('node:fs'),{runInNewContext}=require('node:vm'),assert=require('node:assert/strict'),{webcrypto}=require('node:crypto');
+const connections=readFileSync('dist/connections.js','utf8'),feed=readFileSync('dist/threaded-feed.js','utf8');
+const pure=runInNewContext(connections.slice(0,connections.indexOf('const storedSocial'))+'\nPalaisSocial;');
+let links=pure.connect([],['a','b'],'group','茶会');links=pure.connect(links,['b','c'],'group','第二群');
+assert.equal(pure.knows(links,'a','b'),true);assert.equal(pure.knows(links,'a','c'),false);assert.equal(pure.knows(links,'a','me'),true);
+assert.equal(pure.connect(links,['a','b'],'group','茶会').length,2);
+const post={author:'a',comments:[]},rs=['a','b','c','d'].map(id=>({id}));assert.equal(pure.candidates(links,rs,post).map(r=>r.id).join(','),'a,b');
+const userPost={author:'me',comments:[{id:'c0',author:'c',text:'C的评论'},{id:'c1',author:'b',parentId:'c0',text:'B回复C'},{id:'c2',author:'a',parentId:'c1',text:'A不能看到这个祖先链'}]};
+assert.equal(pure.visibleComments(links,'a',userPost).length,0);assert.ok(!pure.candidates(links,rs,userPost,userPost.comments[1]).some(r=>r.id==='a'));
+assert.equal(pure.groupHistory([{content:'old',audience:['a','b']},{content:'new',audience:['a','b','c']}],'c').map(m=>m.content).join(','),'new');
+let failStorage=false,requests=[];
+const data={roles:['a','b','c','d'].map(id=>({id,name:'角色'+id,prompt:'人设 '+id})),groups:[{id:'group:ab',name:'茶会',members:['a','b']},{id:'group:bc',name:'另一个群',members:['b','c']}],moments:[],histories:{a:[{role:'user',content:'A_PRIVATE_SECRET'}],b:[{role:'user',content:'B_PRIVATE_SECRET'}],'group:ab':[{id:'g1',role:'user',content:'GROUP_SHARED_ROSE',createdAt:1,audience:['a','b']}],'group:bc':[{id:'g2',role:'user',content:'OUTSIDER_GROUP_SECRET',createdAt:2,audience:['b','c']}]},memories:{},profile:{name:'主人'}};
+const core=runInNewContext(readFileSync('dist/core.js','utf8')+'\nPalaisCore;',{URL,Date,TextEncoder,crypto:webcrypto});
+const ctx={...data,localRead:()=>null,localSave:()=>{if(failStorage)throw Error('storage full')},window:{addEventListener:()=>{}},crypto:webcrypto,Date,PalaisCore:core,worldbook:[],config:{base:'https://example.com/v1',model:'test'},key:'test',memoryPrompt:()=>'',msgForAPI:m=>({role:m.role,content:m.content}),chatLabel:id=>id,memoryTick:()=>{},isMomentsView:()=>false,apiReady:()=>true,toast:()=>{},persist:()=>{},request:async(c,m)=>{requests.push(m);return '测试评论'},friendly:e=>e.message};
+const h=runInNewContext(connections+feed+`\nrelations=PalaisSocial.connect(relations,['a','b'],'group','茶会');relations=PalaisSocial.connect(relations,['b','c'],'group','第二群');\n({context:sharedContext,history:memoryHistory,add:commitMoment,comment:generateComment,commit:commitComment,queue:queueInteractions,wait:()=>feedQueue,get:()=>({relations,feedEvents,moments}),auto:enabled=>socialSettings.auto=enabled});`,ctx);
+assert.match(h.context('a'),/GROUP_SHARED_ROSE/);assert.doesNotMatch(h.context('a'),/B_PRIVATE_SECRET|A_PRIVATE_SECRET|OUTSIDER_GROUP_SECRET/);
+assert.doesNotMatch(h.context('d'),/GROUP_SHARED_ROSE|OUTSIDER_GROUP_SECRET/);
+(async()=>{
+ const p={id:'p1',author:'a',text:'角色A的动态',createdAt:3,comments:[]};h.add(p);
+ assert.deepEqual([...h.get().feedEvents[0].audience],['a','b']);
+ await assert.rejects(()=>h.comment(p,'c'),/尚不认识/);assert.equal(requests.length,0);
+ const c=await h.comment(p,'b');assert.equal(c.author,'b');assert.ok(c.id);assert.equal(p.comments.length,1);assert.doesNotMatch(JSON.stringify(requests[0]),/B_PRIVATE_SECRET|A_PRIVATE_SECRET/);
+ const reply=await h.comment(p,'a',c);assert.equal(reply.parentId,c.id);
+ failStorage=true;const before=h.get().feedEvents.length;assert.throws(()=>h.commit(p,{id:'failed',author:'me',text:'失败',createdAt:4}),/storage/);assert.equal(p.comments.length,2);assert.equal(h.get().feedEvents.length,before);failStorage=false;
+ const everyone={id:'p2',author:'me',text:'今天在茶会聊了玫瑰',createdAt:5,comments:[]};h.add(everyone);const n=requests.length;h.queue(everyone);await h.wait();assert.ok(requests.length-n<=4);assert.ok(everyone.comments.length<=4);assert.equal(everyone.comments.filter(x=>x.parentId).length,1);
+ h.auto(false);const paused=requests.length;h.queue(everyone);await h.wait();assert.equal(requests.length,paused);
+ console.log('Social checks passed: direct acquaintances, non-transitivity, thread visibility, membership snapshots, group-to-private recall, stranger gating, private isolation, reply IDs, rollback and bounded auto interactions.');
+})().catch(e=>{console.error(e);process.exit(1)});

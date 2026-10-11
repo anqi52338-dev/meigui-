@@ -49,11 +49,11 @@ function openAppearance(r) {
   document.querySelector('#closeAppearance').onclick=()=>dialog.close();dialog.showModal();
 }
 function renderBook() {
-  screen.innerHTML = `<section class="view">${title('世界书','THE STORIES BEHIND YOUR WORLD','<button class="round" id="newEntry" aria-label="新建世界书条目">+</button>')}<div class="notice">收藏世界观、人物关系和背景规则。启用的条目会按生效范围，在聊天时自动交给模型。</div><div class="book-summary">${worldbook.filter(e=>e.enabled).length} 个启用条目 · ${worldbook.length} 个条目</div><div id="entries"></div><p class="section-note">常驻：每次聊天都带入。<br>关键词触发：最近 6 条消息包含任一关键词时带入。<br>世界书保存在此浏览器，内容会发送给你配置的 API。</p><button class="secondary full" id="backBook">返回桌面</button></section>`;
+  screen.innerHTML = `<section class="view">${title('世界书','THE STORIES BEHIND YOUR WORLD','<button class="round" id="newEntry" aria-label="新建世界书条目">+</button>')}<div class="notice">收藏世界观、人物关系和背景规则。启用的条目会按生效范围，在聊天时自动交给模型。</div><button class="secondary full" id="bookRelations">世界书人物关系 · 登记原本认识的角色</button><div class="book-summary">${worldbook.filter(e=>e.enabled).length} 个启用条目 · ${worldbook.length} 个条目</div><div id="entries"></div><p class="section-note">常驻：每次聊天都带入。<br>关键词触发：最近 6 条消息包含任一关键词时带入。<br>世界书保存在此浏览器，内容会发送给你配置的 API。</p><button class="secondary full" id="backBook">返回桌面</button></section>`;
   const list=document.querySelector('#entries');
   if(!worldbook.length) list.innerHTML='<div class="book-empty"><span>♧</span><p>你的世界，等你来书写。</p><small>点右上角 ＋，添加第一条背景设定。</small></div>';
   worldbook.forEach(e=>{const card=document.createElement('article');card.className='book-card';const role=roles.find(r=>r.id===e.roleId);card.innerHTML=`<div class="book-card-top"><strong>${escapeHtml(e.name)}</strong><label class="switch-label"><input type="checkbox" ${e.enabled?'checked':''} aria-label="启用 ${escapeHtml(e.name)}">启用</label></div><div class="book-tags"><span>${e.mode==='always'?'常驻':'关键词触发'}</span><span>${escapeHtml(e.roleId?(role?.name||'角色已不存在'):'全部角色')}</span></div><p>${escapeHtml(e.content)}</p><button class="text-button">编辑条目 ↗</button>`;card.querySelector('input').onchange=ev=>{const old=e.enabled;e.enabled=ev.target.checked;try{saveBook();renderBook()}catch(err){e.enabled=old;ev.target.checked=old;toast('保存失败，浏览器空间可能不足')}};card.querySelector('button').onclick=()=>editEntry(e.id);list.append(card)});
-  document.querySelector('#newEntry').onclick=()=>editEntry();document.querySelector('#backBook').onclick=()=>go('home');
+  document.querySelector('#bookRelations').onclick=openRelationships;document.querySelector('#newEntry').onclick=()=>editEntry();document.querySelector('#backBook').onclick=()=>go('home');
 }
 function saveBook(){localStorage.setItem('palais.worldbook',JSON.stringify(worldbook))}
 function editEntry(id=null){
