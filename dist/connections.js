@@ -11,7 +11,7 @@ const PalaisSocial={
 const storedSocial=localRead('socialState',null);
 let relations=storedSocial?.relations||[],feedEvents=storedSocial?.feedEvents||[],socialSettings=storedSocial?.settings||{auto:true},socialBusy=false;
 if(storedSocial){groups=storedSocial.groups;moments=storedSocial.moments}
-function saveSocial(){localSave('socialState',{groups,moments,relations,feedEvents,settings:socialSettings})}
+function saveSocial(){localSave('socialState',{groups,moments,relations,feedEvents,settings:socialSettings,notices:typeof notices==='undefined'?[]:notices})}
 function knows(a,b){return PalaisSocial.knows(relations,a,b)}
 function relationshipPrompt(id){const known=relations.filter(x=>x.a===id||x.b===id).map(x=>chatLabel(x.a===id?x.b:x.a)+'（'+x.reason+'）');return '你认识的其他角色：'+(known.join('；')||'暂时没有')+'。没有在世界书明确说明或这里登记的关系，不要假装早已认识。不因认识同一个朋友而自动认识其他角色。'}
 function groupSeen(r,id){return PalaisSocial.groupHistory(histories[r.id]||[],id)}

@@ -14,13 +14,13 @@ const PalaisCore = {
     if (!ids.length) throw Error('此接口未返回可用模型，请检查密钥权限或手动输入');
     return ids;
   },
-  activeEntries(entries, roleId, messages) {
+  activeEntries(entries, roleId, messages, conversationId = roleId) {
     const text = messages.slice(-6).map(m => m.content).join('\n').normalize('NFKC').toLowerCase();
-    return entries.filter(e => e.enabled && (!e.roleId || e.roleId === roleId) && (e.mode === 'always' || e.keys.split(/[,，;；\n]/).map(k => k.trim().normalize('NFKC').toLowerCase()).filter(Boolean).some(k => text.includes(k))));
+    return entries.filter(e => e.enabled && ((e.scope||(e.roleId||e.groupId?'local':'global'))==='global'||e.roleId===roleId||!!e.groupId&&e.groupId===conversationId) && (e.mode === 'always' || (e.keys||'').split(/[,，;；\n]/).map(k => k.trim().normalize('NFKC').toLowerCase()).filter(Boolean).some(k => text.includes(k))));
   },
-  systemPrompt(role, entries, messages) {
-    const active = this.activeEntries(entries, role.id, messages);
-    return role.prompt + (active.length ? '\n\n以下是本次对话适用的世界书背景资料，请结合角色设定保持人物、关系和世界观一致：\n' + active.map(e => `【${e.name}】\n${e.content}`).join('\n\n') : '');
+  systemPrompt(role, entries, messages, conversationId = role.id) {
+    const active = this.activeEntries(entries, role.id, messages, conversationId).sort((a,b)=>Number(!!(a.roleId||a.groupId))-Number(!!(b.roleId||b.groupId))); 
+    return role.prompt + (active.length ? '\n\n以下是本次对话适用的世界书背景资料，请结合角色设定保持人物、关系和世界观一致。局部设定与全局同一事项冲突时，以局部设定为准：\n' + active.map(e => `【${e.name}】\n${e.content}`).join('\n\n') : '');
   }
 };
 Object.assign(PalaisCore, {

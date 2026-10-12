@@ -15,7 +15,7 @@ async function scenario(mode,amount='52.00'){
   const notice=[];let uuid=0;
   const harness=runInNewContext(walletSource+`\nlet histories={},busy=false,phoneLocked=false,controller=null,tab='wechat',current='rose',config={base:'https://chat.example/v1',model:'chat'},key='test',profile={name:'主人'},roles=[{id:'rose',name:'玫瑰小姐',prompt:'角色',emoji:'🌷'}],worldbook=[],voiceMode=false,voiceSettings={autoPlay:false};\n`+send+`\n({send:()=>sendMessage(roles[0],'测试',{type:'redpacket',amount:'${amount}',status:'sent',note:'测试'}),get:()=>({wallet,histories})});`,{
     localRead:()=>null,Date,PalaisCore:core,DOMException,AbortController,setTimeout,clearTimeout,crypto:{randomUUID:()=>String(++uuid)},
-    requireAPI:()=>true,persist:()=>{if(mode==='storage-fail')throw Error('mock storage failure')},render:()=>{},renderConversation:()=>{},consolidate:async()=>{},memoryPrompt:()=>'',msgForAPI:m=>({role:m.role,content:m.content}),memoryTick:()=>{},isChatView:()=>false,sharedContext:()=>'',relationshipPrompt:()=>'',
+    requireAPI:()=>true,persist:()=>{if(mode==='storage-fail')throw Error('mock storage failure')},render:()=>{},renderConversation:()=>{},consolidate:async()=>{},memoryPrompt:()=>'',msgForAPI:m=>({role:m.role,content:m.content}),memoryTick:()=>{},isChatView:()=>false,sharedContext:()=>'',relationshipPrompt:()=>'',buildChatMessages:async(system,hist)=>[{role:'system',content:system},...hist.map(m=>({role:m.role,content:m.content}))],parseChatReply:text=>core.cardReply(text),incomingMessage:()=>{},reportVisionFailure:()=>{},
     request:async()=>{if(mode==='api-fail')throw Error('mock API failure');return '回复'},friendly:e=>e.message,toast:s=>notice.push(s)
   });
   return {harness,notice};
