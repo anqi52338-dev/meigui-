@@ -4,7 +4,7 @@ const PalaisTheme={
   fallback:'macaron',
   // 新主题：在这里登记一项，并在 themes.css 写一段 :root[data-theme="id"] 覆盖样式；token:true 的主题只需定义 --t-* 配色令牌
   list:[
-    {id:'macaron',name:'嫩樱粉',en:'SOFT BLOSSOM',note:'嫩樱粉 · 奶白 · 淡香槟',swatches:['#ffd2e5','#fffafd','#f5e6f3','#ecd2da'],meta:'#fff5fa'},
+    {id:'macaron',name:'奶白粉蕾丝',en:'BLUSH & LACE',note:'奶白 · 浅粉波点 · 细蕾丝',swatches:['#ffd2e5','#fffafd','#f5e6f3','#ecd2da'],meta:'#fff5fa'},
     {id:'ins',name:'INS 奶油风',en:'CREAM INS',note:'奶油白 · 燕麦色 · 墨黑 · 拍立得',swatches:['#f8f4ee','#e5ddd2','#a8916f','#2e2a26'],meta:'#f8f4ee',token:true},
     {id:'night',name:'月夜星河',en:'MOONLIT',note:'深夜蓝 · 薰衣草 · 星光金',swatches:['#1f1d3a','#3d3575','#c7b4ff','#e8cf8f'],meta:'#1f1d3a',token:true,dark:true},
     {id:'soda',name:'薄荷汽水',en:'MINT SODA',note:'薄荷绿 · 汽水蓝 · 气泡白',swatches:['#f4fffc','#7ad9c9','#6cc4f0','#ff9fb5'],meta:'#e3fbf5',token:true},

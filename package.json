@@ -1,10 +1,10 @@
 {
   "name": "rose-palais-phone",
-  "version": "10.1.0",
+  "version": "10.2.0",
   "private": true,
   "description": "玫瑰小宫殿纯前端小手机",
   "scripts": {
-    "test": "node tests/core.test.cjs && node tests/v3.test.cjs && node tests/wallet.test.cjs && node tests/social.test.cjs && node tests/v6.test.cjs && node tests/home.test.cjs && node tests/home-world.test.cjs && node tests/theme.test.cjs && node tests/desktop.test.cjs"
+    "test": "node tests/core.test.cjs && node tests/v3.test.cjs && node tests/wallet.test.cjs && node tests/social.test.cjs && node tests/v6.test.cjs && node tests/home.test.cjs && node tests/home-world.test.cjs && node tests/theme.test.cjs && node tests/desktop.test.cjs && node tests/chat-ui.test.cjs"
   },
   "engines": {
     "node": ">=22"
