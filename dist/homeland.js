@@ -1,6 +1,6 @@
 let homeland=PalaisHome.normalize(localRead('homeland',null),Date.now()),homeGame=null,homeDraft=null,homeDressTab='face',homePanelType='';
-const homeLooks=['玫瑰杏眼 · 栗色卷发','薄荷绿眸 · 蜂蜜短卷','紫藤蓝眸 · 编发盘髻','琥珀星眸 · 珍珠盘发'];
-function homeAvatar(a=homeland.avatar,outfit=a.outfit){const ids=['rose','mint','lilac','gold'],body=Math.max(0,ids.indexOf(outfit)),head=a.look??0;return `<span class="paper-doll shape-${a.shape||'slim'} tint-${a.tint||'natural'}" role="img" aria-label="${escapeHtml(homeLooks[head])}，${escapeHtml(PalaisHome.clothes[outfit].name)}"><i class="doll-layer doll-body" style="background-position:${body/3*100}% 0"></i><i class="doll-layer doll-head" style="background-position:${head/3*100}% 0"></i>${a.blush!=='none'?`<i class="doll-blush ${a.blush==='peach'?'peach':''}"></i>`:''}${a.detail==='freckles'?'<i class="doll-freckles">· ·</i>':a.detail==='star'?'<i class="doll-star">✧</i>':''}</span>`}
+const homeLooks=['玫瑰杏眼 · 栗色长卷','薄荷绿眸 · 蜂蜜短发','紫藤蓝眸 · 双丸子头','琥珀星眸 · 公主长发'];
+function homeAvatar(a=homeland.avatar,outfit=a.outfit){const head=a.look??0;return `<span class="paper-doll shape-${a.shape||'slim'}" role="img" aria-label="${escapeHtml(homeLooks[head])}，${escapeHtml(PalaisHome.clothes[outfit].name)}">${PalaisDoll.svg(a,outfit)}</span>`}
 function homeOwner(){return roles.find(r=>r.id===homeland.partner)}
 function homeRelationshipPrompt(id){if(homeland.partner!==id)return '';return '\n你和用户共同拥有玫瑰家园'+(homeland.pet?'，共同领养了宠物'+homeland.pet.name:'')+'。最近的家园公开经历：'+homeland.log.slice(0,6).map(x=>x.text).join('；')+'。这些是你与用户在虚拟家园的共同经历，不能编造未发生的照料。'}
 function homeStore(){try{if(homeGame){homeland.location={...homeGame.player};homeland.petMotion={...homeGame.pet}}localSave('homeland',homeland);return true}catch{toast('家园保存失败，请检查浏览器存储空间');return false}}
