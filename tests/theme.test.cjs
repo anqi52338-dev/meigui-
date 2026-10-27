@@ -1,0 +1,14 @@
+const {readFileSync}=require('node:fs'),{runInNewContext}=require('node:vm'),assert=require('node:assert/strict');
+const t=runInNewContext(readFileSync('dist/themes.js','utf8')+'\nPalaisTheme;',{});
+const mem=new Map(),store={getItem:k=>mem.get(k)??null,setItem:(k,v)=>mem.set(k,v)};
+assert.equal(t.current(store),'gold-rose');
+assert.ok(t.save('classic',store));assert.equal(t.current(store),'classic');
+assert.equal(t.save('missing',store),false);assert.equal(t.current(store),'classic');
+mem.set('palais.theme','removed-theme');assert.equal(t.current(store),'gold-rose');
+assert.equal(t.current({getItem(){throw Error('blocked')}}),'gold-rose');
+assert.equal(t.save('classic',{setItem(){throw Error('quota')}}),false);
+assert.equal(t.apply('unknown'),'gold-rose');
+assert.equal(new Set(t.list.map(x=>x.id)).size,t.list.length);
+const css=readFileSync('dist/themes.css','utf8');
+for(const x of t.list.filter(x=>x.id!=='classic'))assert.ok(css.includes(`:root[data-theme="${x.id}"]`),x.id+' 缺少样式');
+console.log('theme tests passed');

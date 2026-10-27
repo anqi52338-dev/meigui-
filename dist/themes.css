@@ -1,0 +1,113 @@
+/* 主题切换面板（所有主题通用） */
+.theme-list{display:grid;gap:12px;margin:18px 0 6px}.theme-option{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:1px solid var(--line);border-radius:16px;background:#fffdf9;padding:14px}.theme-option>span:nth-child(2){flex:1;min-width:0}.theme-option strong{display:block;font-family:'Noto Serif SC',serif;font-size:14px;font-weight:500}.theme-option small{display:block;font-size:9px;letter-spacing:.5px;color:var(--muted);margin-top:6px}.theme-option b{font-size:10px;font-weight:400;color:var(--rose);white-space:nowrap}.theme-option.selected{border-color:var(--gold);box-shadow:0 0 0 3px #f3e6cf}.theme-swatches{display:flex}.theme-swatches i{width:20px;height:20px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #e2cfc0;margin-left:-6px}.theme-swatches i:first-child{margin-left:0}
+
+/* ───────── 金粉宫廷 GOLD ROSE ───────── */
+:root[data-theme="gold-rose"]{
+  --pink:#e39aae;--rose:#b4607a;--gold:#b98f45;--ink:#5a3a43;--muted:#a7838b;--cream:#fffaf3;--line:#efd9cc;
+  --gr-deep:#9a4a63;--gr-blush:#fbe4ea;--gr-blush2:#f5cdd8;--gr-champagne:#f7ead2;
+  --gr-foil:linear-gradient(135deg,#b4843a 0%,#f0d9a2 26%,#c69c50 50%,#f7e6bb 72%,#ad7d33 100%);
+  --gr-rosefoil:linear-gradient(135deg,#e5a0b3 0%,#c86e88 55%,#a9536d 100%);
+  --gr-shadow:0 8px 22px #b4607a1f;
+}
+:root[data-theme="gold-rose"] body{background:#fbf1ec;background-image:radial-gradient(ellipse at 72% 45%,#f7d4dd99,transparent 58%),radial-gradient(ellipse at 15% 90%,#f3e2c470,transparent 50%);color:var(--ink)}
+:root[data-theme="gold-rose"] ::selection{background:#f2c7d3}
+
+/* 左侧介绍 */
+:root[data-theme="gold-rose"] .brand{color:var(--gold)}
+:root[data-theme="gold-rose"] .brandmark{border:1.5px solid transparent;background:linear-gradient(#fdf5ef,#fdf5ef) padding-box,var(--gr-foil) border-box;color:var(--gold);box-shadow:0 0 0 4px #fbf1ec,0 0 0 5px #ead2a5}
+:root[data-theme="gold-rose"] .edition{color:var(--rose)}
+:root[data-theme="gold-rose"] h1{color:var(--ink)}
+:root[data-theme="gold-rose"] .intro p{color:#9c7a82}
+:root[data-theme="gold-rose"] .rule{background:linear-gradient(90deg,#c9a052,#f0d9a2 40%,transparent)}
+:root[data-theme="gold-rose"] .rule span{background:#fbf1ec;color:var(--gold)}
+:root[data-theme="gold-rose"] .share{border:1px solid transparent;background:linear-gradient(#fdf4ef,#fdf4ef) padding-box,var(--gr-foil) border-box;color:var(--gr-deep);box-shadow:var(--gr-shadow)}
+:root[data-theme="gold-rose"] .side-note{color:var(--gold)}
+
+/* 手机外壳 */
+:root[data-theme="gold-rose"] .phone{border:7px solid transparent;background:linear-gradient(var(--cream),var(--cream)) padding-box,linear-gradient(160deg,#f6d6de,#e9b8c6 40%,#f4d2db 70%,#e6b2c1) border-box;box-shadow:0 0 0 1.5px #d2aa63,0 0 0 4px #fbeee9,0 0 0 5px #e7cd9a,0 30px 80px #a2526a2e,inset 0 0 0 1px #fff}
+:root[data-theme="gold-rose"] .status{color:#6a4650}
+:root[data-theme="gold-rose"] .island{background:#4c2f37}
+:root[data-theme="gold-rose"] .island:after{background:#8a6670}
+:root[data-theme="gold-rose"] #screen{scrollbar-color:#ebc3cf transparent}
+:root[data-theme="gold-rose"] .homebar{background:linear-gradient(90deg,#d6a1b0,#c9a052,#d6a1b0)}
+
+/* 底部导航 */
+:root[data-theme="gold-rose"] .dock,:root[data-theme="gold-rose"] .wx-dock{background:#fffaf5eb;border-top:1px solid transparent;border-image:linear-gradient(90deg,transparent,#dcbc7c,transparent) 1;backdrop-filter:blur(10px)}
+:root[data-theme="gold-rose"] .dock button{color:#b0939a;position:relative}
+:root[data-theme="gold-rose"] .dock button.active,:root[data-theme="gold-rose"] .wx-dock button.active{color:var(--gr-deep)}
+:root[data-theme="gold-rose"] .dock button.active:before{content:'';position:absolute;bottom:-4px;width:4px;height:4px;border-radius:50%;background:var(--gold)}
+
+/* 桌面 */
+:root[data-theme="gold-rose"] .home{background:radial-gradient(ellipse at 18% 18%,#fbdbe3,transparent 52%),radial-gradient(ellipse at 90% 62%,#f8ead0aa,transparent 50%),linear-gradient(#fffaf4,#f9e5e8 70%,#f6dde3)}
+:root[data-theme="gold-rose"] .eyebrow{color:var(--gold);letter-spacing:2.5px}
+:root[data-theme="gold-rose"] .crest,:root[data-theme="gold-rose"] .crest:before,:root[data-theme="gold-rose"] .crest:after{background:var(--gr-foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+:root[data-theme="gold-rose"] .home h2{color:var(--ink)}
+:root[data-theme="gold-rose"] .subtitle,:root[data-theme="gold-rose"] .date{color:#ad8590}
+:root[data-theme="gold-rose"] .clock{background:linear-gradient(175deg,#c97b91 10%,#9a4a63 75%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
+:root[data-theme="gold-rose"] .quote{border:1px solid transparent;background:linear-gradient(#fffaf5e6,#fff3f2e6) padding-box,var(--gr-foil) border-box;box-shadow:inset 0 0 0 4px #fffaf5,inset 0 0 0 5px #f1dcae,var(--gr-shadow)}
+:root[data-theme="gold-rose"] .quote p{color:var(--ink)}
+:root[data-theme="gold-rose"] .quote small{color:var(--gold)}
+:root[data-theme="gold-rose"] .app{color:#7b5560}
+:root[data-theme="gold-rose"] .app span{border:1.5px solid transparent;background:linear-gradient(150deg,#fffdfb,#f9dde5) padding-box,var(--gr-foil) border-box;color:var(--gr-deep);box-shadow:inset 0 0 0 3px #ffffff80,0 6px 14px #b4607a24}
+:root[data-theme="gold-rose"] .app:nth-child(even) span{background:linear-gradient(150deg,#fffdf6,#f5e6c8) padding-box,var(--gr-foil) border-box;color:#a67a32}
+:root[data-theme="gold-rose"] .app[data-go="wechat"] span{background:var(--gr-rosefoil) padding-box,var(--gr-foil) border-box;color:#fff9f2;box-shadow:inset 0 0 0 3px #ffffff30,0 7px 16px #a9536d40}
+:root[data-theme="gold-rose"] .app:active span{transform:scale(.94)}
+:root[data-theme="gold-rose"] .text-button{color:var(--rose)}
+
+/* 通用页面 */
+:root[data-theme="gold-rose"] .heading h2{color:var(--ink)}
+:root[data-theme="gold-rose"] .round{border:1px solid transparent;background:linear-gradient(#fff7f4,#fff7f4) padding-box,var(--gr-foil) border-box;color:var(--gr-deep)}
+:root[data-theme="gold-rose"] .notice{background:linear-gradient(135deg,#fdf6ea,#fbecef);border-color:#ecd7b4;color:#97764c}
+:root[data-theme="gold-rose"] .role,:root[data-theme="gold-rose"] .event-card,:root[data-theme="gold-rose"] .book-card{border:1px solid #f0dcd2;background:#fffdfa;box-shadow:0 4px 14px #b4607a12}
+:root[data-theme="gold-rose"] .contact-row{box-shadow:none}
+:root[data-theme="gold-rose"] .avatar{background:linear-gradient(145deg,#fdeef1,#f6d2dc)}
+:root[data-theme="gold-rose"] .role .arrow,:root[data-theme="gold-rose"] .contact-row>span:last-child{color:var(--gold)}
+:root[data-theme="gold-rose"] .chat-links button,:root[data-theme="gold-rose"] .book-scope-tabs button{background:linear-gradient(#fff6f7,#fbe4ea);border-color:#efcfd8;color:var(--gr-deep)}
+:root[data-theme="gold-rose"] .book-scope-tabs button.selected{background:var(--gr-rosefoil);border-color:transparent;color:#fff}
+:root[data-theme="gold-rose"] .menu-button{color:var(--ink);border-bottom-color:#f0dfd5}
+:root[data-theme="gold-rose"] .menu-button span{color:var(--gold)}
+:root[data-theme="gold-rose"] label{color:#8f6a74}
+:root[data-theme="gold-rose"] input,:root[data-theme="gold-rose"] textarea,:root[data-theme="gold-rose"] select{border-color:#ecd5cc;background:#fffdfa}
+:root[data-theme="gold-rose"] input:focus,:root[data-theme="gold-rose"] textarea:focus,:root[data-theme="gold-rose"] select:focus{border-color:#cf8a9e;box-shadow:0 0 0 3px #f8dfe6}
+:root[data-theme="gold-rose"] .check input,:root[data-theme="gold-rose"] .switch-label input,:root[data-theme="gold-rose"] .member-option input{accent-color:#bd6a83}
+:root[data-theme="gold-rose"] .primary{background:var(--gr-rosefoil);border:1px solid #c5a05a;color:#fff;box-shadow:inset 0 1px #ffffff55,0 6px 16px #a9536d33;letter-spacing:.5px}
+:root[data-theme="gold-rose"] .secondary{background:linear-gradient(#fffdf8,#fbf1e6);border:1px solid #e6cfa6;color:#8c6650}
+:root[data-theme="gold-rose"] .danger{color:#b2526a}
+:root[data-theme="gold-rose"] .mini-tag{background:var(--gr-champagne);color:#a07b3c}
+
+/* 聊天 */
+:root[data-theme="gold-rose"] .chat-head{background:linear-gradient(#fffaf5,#fdf1f1);border-bottom:1px solid transparent;border-image:linear-gradient(90deg,transparent,#dfc185,transparent) 1}
+:root[data-theme="gold-rose"] .chat-head button{color:var(--gr-deep)}
+:root[data-theme="gold-rose"] .conversation-date{color:#b9969d}
+:root[data-theme="gold-rose"] .bubble{background:#fffdfa;border-color:#f0dcc9;box-shadow:0 2px 8px #b4607a0d}
+:root[data-theme="gold-rose"] .msg.user .bubble{background:linear-gradient(135deg,#fde7ed,#f6cbd7);border-color:#ecbac8}
+:root[data-theme="gold-rose"] .chat-actions{background:#fffaf6;border-top-color:#f0ddd0}
+:root[data-theme="gold-rose"] .chat-actions button{color:var(--rose)}
+:root[data-theme="gold-rose"] .composer{background:#fffaf6;border-top-color:#f0ddd0}
+:root[data-theme="gold-rose"] .gift-card{background:var(--gr-rosefoil);box-shadow:0 6px 16px #a9536d30}
+:root[data-theme="gold-rose"] .gift-card.transfer{background:linear-gradient(135deg,#dcb56c,#b98a40)}
+:root[data-theme="gold-rose"] .receive-card{background:#fdf0d6;color:#8e6a3d}
+
+/* 卡片与拱形面板 */
+:root[data-theme="gold-rose"] .profile-card,:root[data-theme="gold-rose"] .wallet-hero,:root[data-theme="gold-rose"] .moment-cover,:root[data-theme="gold-rose"] .period-hero{border:1px solid transparent;background:linear-gradient(170deg,#fffaf3,#fbe0e7) padding-box,var(--gr-foil) border-box;box-shadow:inset 0 0 0 4px #fffaf590,var(--gr-shadow)}
+:root[data-theme="gold-rose"] .profile-card h3,:root[data-theme="gold-rose"] .wx-profile strong{color:var(--ink)}
+:root[data-theme="gold-rose"] .wx-wallet-card{border:1px solid transparent;background:linear-gradient(125deg,#f6cfda,#fbe8dc 60%,#f5e1c0) padding-box,var(--gr-foil) border-box;box-shadow:var(--gr-shadow)}
+:root[data-theme="gold-rose"] .wx-wallet-card strong,:root[data-theme="gold-rose"] .wallet-hero strong{color:var(--gr-deep)}
+:root[data-theme="gold-rose"] .stats strong{background:var(--gr-rosefoil);-webkit-background-clip:text;background-clip:text;color:transparent}
+:root[data-theme="gold-rose"] .moment-comments{background:#fcf0ef}
+:root[data-theme="gold-rose"] .moment-comments strong{color:var(--gr-deep)}
+:root[data-theme="gold-rose"] .day.selected{background:var(--gr-rosefoil)}
+:root[data-theme="gold-rose"] .day.today{border-color:#c9a052}
+:root[data-theme="gold-rose"] .day.period-day{background:#f9d9e2}
+:root[data-theme="gold-rose"] .voice-orb{background:linear-gradient(145deg,#fbe4ea,#f2c4d1);border-color:#d8b26c;box-shadow:0 0 0 8px #fdf0f3,0 0 0 9px #ead39f}
+:root[data-theme="gold-rose"] .feed-activity,:root[data-theme="gold-rose"] .sticker-tile,:root[data-theme="gold-rose"] .sticker-picker>button{background:#fff3f6;border-color:#f0d0da}
+:root[data-theme="gold-rose"] .vision-panel,:root[data-theme="gold-rose"] .memory-config,:root[data-theme="gold-rose"] .worldbook-help{background:#fffaf0;border-color:#ecd6b1}
+
+/* 弹窗、通知与提示 */
+:root[data-theme="gold-rose"] dialog{border:1px solid transparent;background:linear-gradient(#fffaf5,#fff6f4) padding-box,var(--gr-foil) border-box;box-shadow:0 24px 70px #6e3a4a40}
+:root[data-theme="gold-rose"] dialog::backdrop{background:#5a2f3c55}
+:root[data-theme="gold-rose"] dialog h2{color:var(--ink)}
+:root[data-theme="gold-rose"] #phoneBanner{border-color:#e2bf84;background:#fff7f6f0;box-shadow:0 10px 24px #a9536d30}
+:root[data-theme="gold-rose"] #toast{background:linear-gradient(135deg,#7a4252,#5c3340);border:1px solid #d6b26e;color:#fff6ea}
+:root[data-theme="gold-rose"] .theme-option.selected{border-color:#d1aa62;box-shadow:0 0 0 3px #f6e7c9}
+:root[data-theme="gold-rose"] .has-news:after,:root[data-theme="gold-rose"] .pink-dot{background:#d9708f}
