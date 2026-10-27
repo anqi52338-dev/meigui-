@@ -1,9 +1,9 @@
 const PalaisTheme={
   storageKey:'palais.theme',
-  fallback:'gold-rose',
+  fallback:'macaron',
   // 新主题：在这里登记一项，并在 themes.css 写一段 :root[data-theme="id"] 覆盖样式
   list:[
-    {id:'gold-rose',name:'金粉宫廷',en:'GOLD ROSE',note:'玫瑰粉 · 奶油白 · 香槟金箔',swatches:['#e39aae','#fff8ef','#c9a050'],meta:'#f3d3da'},
+    {id:'macaron',name:'马卡龙金粉',en:'MACARON',note:'草莓粉 · 薄荷绿 · 柠檬黄 · 香槟金',swatches:['#ffc9d7','#d6f2e5','#fff2c6','#e6c47e'],meta:'#ffe9ef'},
     {id:'classic',name:'初版浅玫瑰',en:'CLASSIC',note:'浅玫瑰 · 奶油白 · 香槟金',swatches:['#edc8cf','#ffffff','#cbb38b'],meta:'#f4d8dc'}
   ],
   find(id){return this.list.find(t=>t.id===id)||null},
