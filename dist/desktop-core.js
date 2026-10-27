@@ -1,0 +1,8 @@
+(function(root){
+ const pages=[{name:'日常',apps:['wechat','homeland','calendar','weather']},{name:'生活',apps:['todos','period']},{name:'故事',apps:['book','memory','stickers','api']}];
+ function month(date=new Date()){const year=date.getFullYear(),m=date.getMonth(),offset=(new Date(year,m,1).getDay()+6)%7,days=new Date(year,m+1,0).getDate();return {year,month:m+1,offset,days,today:date.getDate()}}
+ function tasks(items,a){const next=JSON.parse(JSON.stringify(items));if(a.type==='add'){const text=String(a.text||'').trim();if(!text||text.length>80)throw Error('待办填写 1–80 个字');if(next.length>=100)throw Error('最多保存 100 条待办');next.unshift({id:a.id,text,done:false,createdAt:a.now})}else{const item=next.find(x=>x.id===a.id);if(!item)throw Error('待办不存在');if(a.type==='toggle')item.done=!item.done;else throw Error('未知操作')}return next}
+ function weather(data){const c=data?.current;if(typeof c?.temperature_2m!=='number'||!Number.isFinite(c.temperature_2m)||typeof c?.weather_code!=='number')throw Error('天气数据暂不可用');return {temperature:Math.round(c.temperature_2m),code:c.weather_code,time:c.time,high:data.daily?.temperature_2m_max?.[0],low:data.daily?.temperature_2m_min?.[0]}}
+ function condition(code){if(code===0)return ['晴','sun'];if(code<=3)return ['多云','cloud'];if([45,48].includes(code))return ['雾','cloud'];if(code>=71&&code<=77||code===85||code===86)return ['雪','snow'];if(code>=95)return ['雷阵雨','rain'];return ['雨','rain']}
+ const api={pages,month,tasks,weather,condition};root.PalaisDesktop=api;if(typeof module!=='undefined')module.exports=api;
+})(typeof window!=='undefined'?window:globalThis);
