@@ -221,6 +221,33 @@
 .world-player>small{left:-14px;right:-14px;width:fit-content;margin:auto;padding:2px 9px;border-radius:10px;background:#fffaf3e6;box-shadow:0 1px 4px #8a6a5a22;text-shadow:none}
 .home-v3 .clock{cursor:pointer}
 
+/* ───────── 欢迎闪屏 NOTRE MAISON ───────── */
+#splash{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s}
+#splash.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.splash-bg{position:absolute;inset:0;background:#fffaf5;background-image:repeating-linear-gradient(45deg,transparent,transparent 18px,#f8e8e440 18px,#f8e8e440 19px),repeating-linear-gradient(-45deg,transparent,transparent 18px,#f8e8e440 18px,#f8e8e440 19px)}
+.splash-corner{position:absolute;width:60px;height:60px;background:var(--mc-corner,none) no-repeat center/contain}
+.splash-tl{top:28px;left:28px}
+.splash-tr{top:28px;right:28px;transform:scaleX(-1)}
+.splash-bl{bottom:28px;left:28px;transform:scaleY(-1)}
+.splash-br{bottom:28px;right:28px;transform:scale(-1)}
+.splash-body{position:relative;z-index:1;text-align:center;padding:0 30px;max-width:360px}
+.splash-title{font-family:Georgia,serif;font-size:13px;letter-spacing:6px;color:#b49667;margin-bottom:28px}
+.splash-cameo{width:140px;height:140px;margin:0 auto 24px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#fff,#fff1f5 70%,#ffe0ea);border:3px solid #e6c880;box-shadow:0 0 0 1.5px #f3d9a3,0 0 0 6px #fff7f2,0 0 0 7.5px #e6c88040,0 8px 30px #c98a9a20;display:grid;place-items:center;position:relative;overflow:hidden}
+.splash-cameo:before{content:'';position:absolute;inset:6px;border-radius:50%;border:1.4px dashed #f3d9a3}
+.splash-pet{width:90px;height:90px;background:var(--home-pet) center/contain no-repeat}
+.splash-welcome{font-family:Georgia,serif;font-style:italic;font-size:17px;color:#86616b;letter-spacing:1px;margin-bottom:8px}
+.splash-sub{font-size:11px;letter-spacing:5px;color:#b49667;margin-bottom:20px}
+.splash-divider{display:flex;align-items:center;justify-content:center;margin-bottom:22px}
+.splash-divider span{display:block;width:10px;height:10px;background:#f3d58e;transform:rotate(45deg);box-shadow:0 0 0 1px #cfa24c40}
+.splash-divider:before,.splash-divider:after{content:'';width:50px;height:1px;background:linear-gradient(90deg,transparent,#dcb15e60,transparent)}
+.splash-btn{background:#f5e4e7;border:1.5px solid #e8c9d4;border-radius:25px;padding:11px 38px;font-size:12px;letter-spacing:3px;color:#86616b;cursor:pointer;transition:background .2s,transform .15s}
+.splash-btn:hover{background:#ffe8ed}
+.splash-btn:active{transform:scale(.97)}
+.splash-loading{font-size:10px;color:#b49667;margin-top:18px;letter-spacing:1px;animation:splash-dots 1.5s infinite}
+@keyframes splash-dots{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes splash-in{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+#splash .splash-body{animation:splash-in .5s ease-out}
+
 /* ───────── 令牌主题（INS 奶油风 / 月夜星河 / 薄荷汽水）共用骨架 ───────── */
 :root.tk body{background:var(--t-page);background-image:var(--t-page-art,none);color:var(--t-text);font-family:var(--t-font)}
 :root.tk{--ink:var(--t-text);--muted:var(--t-sub);--rose:var(--t-accent);--gold:var(--t-gold);--cream:var(--t-screen);--line:var(--t-line);--pink:var(--t-accent-soft)}
