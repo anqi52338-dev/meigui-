@@ -14,7 +14,7 @@ const core=runInNewContext(readFileSync('dist/core.js','utf8')+'\nPalaisCore;',{
   assert.equal(core.memoryDue({},Array(10).fill({}),{...settings,enabled:false},now),false);
   assert.match(core.memoryContext({pinned:'喜欢玫瑰',summary:'去了王都'}),/喜欢玫瑰/);
   const card=core.cardReply('送给你。[[红包|52.00|今天开心]]');assert.equal(card.card.amount,'52.00');assert.equal(card.card.type,'redpacket');assert.equal(card.content,'送给你。');
-  assert.equal(core.cardReply('[[红包|0|无效]]').card,undefined);assert.equal(core.cardReply('[[转账|100001|无效]]').card,undefined);
+  assert.equal(core.cardReply('[[红包|0|无效]]').card,undefined);assert.equal(core.cardReply('[[转账|100001|有效]]').card.amount,'100001.00');assert.equal(core.cardReply('[[红包|200.01|无效]]').card,undefined);
   const salt=Array(16).fill(7),hash=await core.pinDigest('654321',salt);assert.equal(hash.length,64);assert.equal(await core.pinDigest('654321',salt),hash);assert.notEqual(await core.pinDigest('654320',salt),hash);assert.notEqual(await core.pinDigest('654321',Array(16).fill(8)),hash);await assert.rejects(()=>core.pinDigest('12',salt));
   const saved=new Map(),sent=[];let fail=false;
   const life=readFileSync('dist/life.js','utf8');
