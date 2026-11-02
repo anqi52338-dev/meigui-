@@ -1,0 +1,76 @@
+/* 明亮嫩樱粉：沿用原主题 id，已有用户刷新即可看到新配色。 */
+:root[data-theme="macaron"]{--pink:#ffd2e5;--rose:#be648c;--gold:#d8b9c0;--ink:#725367;--muted:#98788c;--cream:#fffafd;--line:#f4dce8;--mc-pink:#ffe5f0;--mc-pink-deep:#e8a0bf;--mc-mint:#f5ecf5;--mc-lemon:#fff3f7;--mc-lav:#f3eafb;--mc-peach:#ffeaf1;--mc-sky:#f3edf9;--mc-gold-soft:#ecd2da;--mc-shadow:0 7px 22px #e8a8c21a}
+:root[data-theme="macaron"] body{background:#fff5fa;background-image:radial-gradient(ellipse at 15% 20%,#ffe3f180,transparent 65%),radial-gradient(ellipse at 85% 90%,#fffafd,transparent 70%);color:var(--ink)}
+:root[data-theme="macaron"] .phone{background:#fffafd;border-color:#fffafd;box-shadow:0 0 0 1.5px #f0c9dc,0 0 0 6px #ffe9f3,0 0 0 7.5px #ecd4dd,0 0 0 10px #fffafd,0 0 0 11px #f4dde8,0 25px 60px #dc9cbb20}
+:root[data-theme="macaron"] .status{color:#87657b;background:#fffafd}
+:root[data-theme="macaron"] .intro p,:root[data-theme="macaron"] .intro small,:root[data-theme="macaron"] .palette,:root[data-theme="macaron"] .edition{color:#997588}
+:root[data-theme="macaron"] .brand,:root[data-theme="macaron"] .brandmark,:root[data-theme="macaron"] .side-note{color:#c38da8}
+:root[data-theme="macaron"] .share{background:linear-gradient(140deg,#fffafd,#ffe3ef);border-color:#eec9d9;color:#a45b80;box-shadow:0 3px 10px #e4b7cb16}
+:root[data-theme="macaron"] .view{background:radial-gradient(ellipse at 100% 0,#ffe4f060,transparent 65%),#fffafd;color:var(--ink)}
+:root[data-theme="macaron"] .eyebrow,:root[data-theme="macaron"] .heading .eyebrow{color:#ad7e96}
+:root[data-theme="macaron"] .heading h2,:root[data-theme="macaron"] h3{color:#896078}
+:root[data-theme="macaron"] .notice{background:#fff0f7;color:#916579;box-shadow:0 0 0 1px #f3d4e3;border:0}
+:root[data-theme="macaron"] input,:root[data-theme="macaron"] textarea,:root[data-theme="macaron"] select{background:#fffafd;border:1px solid #efd5e2;color:#79576d}
+:root[data-theme="macaron"] input:focus,:root[data-theme="macaron"] textarea:focus,:root[data-theme="macaron"] select:focus{border-color:#dda0bc;box-shadow:0 0 0 3px #ffe8f2}
+:root[data-theme="macaron"] label{color:#89677d}
+:root[data-theme="macaron"] .primary{background:linear-gradient(135deg,#ffd6e8,#f6b9d3);border:1px solid #f2bfd6;color:#794259;font-weight:600;box-shadow:inset 0 1px #fff8fc,0 5px 12px #e9a7c22b}
+:root[data-theme="macaron"] .secondary,:root[data-theme="macaron"] .round{background:#fff5fa;border:1px solid #efd1e0;color:#a26886;box-shadow:none}
+:root[data-theme="macaron"] .text-button{color:#b4678a}
+:root[data-theme="macaron"] .role,:root[data-theme="macaron"] .wx-profile,:root[data-theme="macaron"] .theme-option,:root[data-theme="macaron"] .mascot-option{background:#fffdfd;border-color:#f3dce7;box-shadow:0 3px 12px #eab8cc13}
+:root[data-theme="macaron"] .avatar{background:#ffe8f1}
+:root[data-theme="macaron"] .dock,:root[data-theme="macaron"] .phone.desktop-mode .dock{background:#fffbfd;border:1px solid #f4dbe7;box-shadow:0 3px 14px #edbdd31a}
+:root[data-theme="macaron"] .dock button,:root[data-theme="macaron"] .phone.desktop-mode .dock button{color:#ac8198}
+:root[data-theme="macaron"] .dock button.active,:root[data-theme="macaron"] .phone.desktop-mode .dock button.active{background:linear-gradient(#fff0f8,#ffdcecff)!important;color:#b7648a}
+:root[data-theme="macaron"] .dock button span{filter:saturate(.65) opacity(.85)}
+:root[data-theme="macaron"] .homebar{background:#efbfd4}
+:root[data-theme="macaron"] .chat-head,:root[data-theme="macaron"] .composer{background:#fff7fb;border-color:#f3dce7}
+:root[data-theme="macaron"] .messages{background:linear-gradient(#fffafd,#fff3f8)}
+:root[data-theme="macaron"] .bubble{background:#fffefe;color:#735367;box-shadow:0 0 0 1px #f5e0ea,0 3px 9px #e9bad01a}
+:root[data-theme="macaron"] .msg.user .bubble{background:linear-gradient(135deg,#ffe4f0,#ffd3e5);color:#784b64}
+:root[data-theme="macaron"] .wx-wallet-card,:root[data-theme="macaron"] .wallet-hero,:root[data-theme="macaron"] .profile-card,:root[data-theme="macaron"] .moment-cover,:root[data-theme="macaron"] .period-hero{background:linear-gradient(145deg,#fff5fb,#ffe4ef);box-shadow:0 0 0 2px #fffafd,0 0 0 3px #f0d3e0,0 6px 20px #e9b5cc13}
+:root[data-theme="macaron"] .wx-wallet-card strong,:root[data-theme="macaron"] .wallet-hero strong{color:#c8759b}
+:root[data-theme="macaron"] dialog{background:#fffafd;border-color:#efcedf;color:#79586e;box-shadow:0 20px 70px #94657d24}
+:root[data-theme="macaron"] dialog::backdrop{background:#74566c38}
+:root[data-theme="macaron"] .theme-option.selected,:root[data-theme="macaron"] .mascot-option.selected{border-color:#dfa7c0;box-shadow:0 0 0 3px #ffebf5}
+:root[data-theme="macaron"] .paged-desktop{background:radial-gradient(ellipse at 12% 4%,#ffe3f180,transparent 65%),linear-gradient(#fff6fb,#fffafd);color:#876179}
+:root[data-theme="macaron"] .desktop-heading>span,:root[data-theme="macaron"] .desktop-heading>button{color:#bc8ba6}
+:root[data-theme="macaron"] .desktop-clock #bigTime{color:#cc779c}
+:root[data-theme="macaron"] .desktop-clock>small{color:#956c84}
+:root[data-theme="macaron"] .desktop-clock>p{color:#ab839a}
+:root[data-theme="macaron"] .desk-widget{background:#fffbfd;border-color:#f0d0e0;box-shadow:0 5px 18px #e9aec51a;color:#946881}
+:root[data-theme="macaron"] .widget-overline{color:#ae7c97}
+:root[data-theme="macaron"] .weather-widget{background:linear-gradient(150deg,#fff6fb,#ffe5f0)}
+:root[data-theme="macaron"] .weather-widget>strong{color:#c97c9e}
+:root[data-theme="macaron"] .weather-widget>b{color:#95647f}
+:root[data-theme="macaron"] .weather-widget>small{color:#a87992}
+:root[data-theme="macaron"] .weather-symbol{color:#d9a1b9}
+:root[data-theme="macaron"] .companion-widget{background:linear-gradient(150deg,#fffafd,#ffebf4)}
+:root[data-theme="macaron"] .companion-widget>small{color:#a57a92}
+:root[data-theme="macaron"] .desk-app>span{background:linear-gradient(145deg,#fffafd,#ffdeec);border-color:#efc8db;color:#c984a4;box-shadow:inset 0 0 0 3px #fff9fc99,0 3px 8px #e5adc516}
+:root[data-theme="macaron"] .desk-app-calendar>span,:root[data-theme="macaron"] .desk-app-memory>span{background:linear-gradient(145deg,#fffafd,#f7e2f3);color:#b98cb2}
+:root[data-theme="macaron"] .desk-app-weather>span,:root[data-theme="macaron"] .desk-app-api>span{background:linear-gradient(145deg,#fffafd,#ffe7ec);color:#ca94a8}
+:root[data-theme="macaron"] .desk-app>small{color:#936c83}
+:root[data-theme="macaron"] .desktop-page-title>small,:root[data-theme="macaron"] .desktop-caption{color:#b18aa0}
+:root[data-theme="macaron"] .desktop-page-title h2{color:#a5718d}
+:root[data-theme="macaron"] .mini-calendar>span{color:#8e687d}
+:root[data-theme="macaron"] .mini-calendar>small{color:#a78297}
+:root[data-theme="macaron"] .mini-calendar .is-today{background:#efb1cc;color:#74425b;box-shadow:0 2px 6px #e9abc527}
+:root[data-theme="macaron"] .todo-widget-heading b,:root[data-theme="macaron"] .todo-widget label{color:#936880}
+:root[data-theme="macaron"] .todo-widget-heading>button{background:#ffe8f2;border-color:#efc9dc;color:#ba7b9a}
+:root[data-theme="macaron"] .todo-widget label,:root[data-theme="macaron"] .todo-item{border-color:#f4dfeb}
+:root[data-theme="macaron"] .todo-empty,:root[data-theme="macaron"] .todo-all{color:#a67b93}
+:root[data-theme="macaron"] .todo-widget input,:root[data-theme="macaron"] .todo-item input{accent-color:#d891b2}
+:root[data-theme="macaron"] .story-widget{background:radial-gradient(ellipse at 50% 20%,#ffe3f1,#fffafd 85%)}
+:root[data-theme="macaron"] .story-widget p{color:#ac7a94}
+:root[data-theme="macaron"] .story-ornament,:root[data-theme="macaron"] .story-widget>small{color:#c99cb3}
+:root[data-theme="macaron"] .desktop-settings{background:#fff4fa;border-color:#f0d1e1;color:#a0718d}
+:root[data-theme="macaron"] .desktop-settings>span,:root[data-theme="macaron"] .desktop-pagination>span{color:#ad819b}
+:root[data-theme="macaron"] .desktop-pagination i{background:#f1d4e3}
+:root[data-theme="macaron"] .desktop-pagination [aria-current]>i{background:#e3a2c0}
+:root[data-theme="macaron"] .weather-detail,:root[data-theme="macaron"] .weather-detail>strong{color:#bd83a0}
+:root[data-theme="macaron"] .splash-bg{background-color:#fff7fb;background-image:repeating-linear-gradient(45deg,transparent,transparent 18px,#f7dce840 18px,#f7dce840 19px),repeating-linear-gradient(-45deg,transparent,transparent 18px,#f7dce840 18px,#f7dce840 19px)}
+:root[data-theme="macaron"] .splash-cameo{background:radial-gradient(circle at 40% 30%,#fffafd,#ffe5f1);border-color:#efc3d8;box-shadow:0 0 0 1.5px #f3d4e4,0 0 0 6px #fffafd,0 0 0 7.5px #efd4df80,0 8px 28px #e7adca20}
+:root[data-theme="macaron"] .splash-btn{background:#ffddeb;border-color:#f0bdd5;color:#995e7d}
+:root[data-theme="macaron"] .game-hud button,:root[data-theme="macaron"] .game-side button,:root[data-theme="macaron"] .game-shortcuts button{background:#fff5fbee;border-color:#efcddd;color:#ac7694}
+:root[data-theme="macaron"] .home-dialog .dress-stage{background:radial-gradient(ellipse,#ffe4f1,transparent 75%);border-color:#efd0e0}
+:root[data-theme="macaron"] .home-dialog .dress-confirm{background:#fffafd}
