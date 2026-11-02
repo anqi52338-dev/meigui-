@@ -1,6 +1,6 @@
 (function(root){
  const crops={radish:{name:'樱桃萝卜',icon:'🌱',fruit:'🍒',time:60000,cost:2,reward:14},carrot:{name:'奶油胡萝卜',icon:'🥕',fruit:'🥕',time:300000,cost:5,reward:30},berry:{name:'玫瑰草莓',icon:'🍓',fruit:'🍓',time:900000,cost:10,reward:60}};
- const clothes={rose:{name:'玫瑰初见',color:'#e8a9b9',price:0},mint:{name:'薄荷茶会',color:'#a3c9bc',price:60},lilac:{name:'紫藤舞会',color:'#b8a4cf',price:100},gold:{name:'香槟公主',color:'#d8b76e',price:160}};
+ const clothes={rose:{name:'耳机街头套装',color:'#e8a9b9',price:0},mint:{name:'奶白学院套装',color:'#a3c9bc',price:60},lilac:{name:'运动休闲套装',color:'#b8a4cf',price:100},gold:{name:'软萌兔子套装',color:'#d8b76e',price:160}};
  const day=t=>new Date(t).getFullYear()+'-'+new Date(t).getMonth()+'-'+new Date(t).getDate();
  function create(now=Date.now()){return {version:1,points:40,avatar:{skin:'#ffe2cc',hair:'#765345',style:'long',outfit:'rose'},owned:['rose'],pet:null,partner:'',plots:Array.from({length:4},()=>null),daily:{day:day(now),care:0,water:0,harvest:0,stolen:[],claimed:[]},log:[],position:{x:48,y:59}}}
  function normalize(s,now){if(!s||s.version!==1)return create(now);s.avatar={look:0,tint:'natural',blush:'soft',detail:'none',shape:'slim',...s.avatar};s.location=s.location||{room:'garden',x:535,y:500};s.petMotion=s.petMotion||{room:'garden',x:450,y:500};if(s.pet&&!s.pet.partner)s.pet.partner=s.partner||'';if(s.daily.day!==day(now))s.daily={day:day(now),care:0,water:0,harvest:0,stolen:[],claimed:[]};return s}
