@@ -13,7 +13,7 @@ const DollV17={
  sprite([sx,sy,sw,sh],[x,y,w,h],filter=''){const [W,H]=this.data.size,s=`<svg x="${x}" y="${y}" width="${w}" height="${h}" viewBox="${sx} ${sy} ${sw} ${sh}" preserveAspectRatio="none"><image href="${this.data.atlas}" width="${W}" height="${H}"/></svg>`;return filter?`<g filter="url(#${filter})">${s}</g>`:s},
  matrix(rgb,base){return rgb.map((v,i)=>[0,1,2].map(j=>j===i?(v/base[i]).toFixed(3):0).concat([0,0]).join(' ')).join(' ')+' 0 0 0 1 0'},
  eyeMatrix(rgb){const k=rgb.map(v=>v/128);return k.map(c=>`${(.3*c).toFixed(3)} ${(.59*c).toFixed(3)} ${(.11*c).toFixed(3)} 0 0`).join(' ')+' 0 0 0 1 0'},
- render(d,label='自由搭配的Q版形象'){const G=this.data.genders[d.gender],c=G.cats,u='d'+crypto.randomUUID().replace(/-/g,''),[bx,by,bw,bh]=G.box,parts=[{...G.body,z:1},{...G.skin,z:2,skin:1}];
+ render(d,label='自由搭配的Q版形象'){const G=this.data.genders[d.gender],c=G.cats,u='d'+crypto.randomUUID().replace(/-/g,''),[bx,by,bw,bh]=G.box,parts=[{...G.body,z:1},{...G.skin,z:1.2,skin:1},{...G.head,z:1.5},{...G.headskin,z:1.7,skin:1}];
   const add=(cat,i)=>{const e=c[cat]?.[i];if(!e)return;for(const p of e.parts)parts.push({...p,z:cat==='shoes'&&d.items.set!=null?6.5:p.z})};
   add('hair',d.hair);add('face',d.face);for(const [cat,i] of Object.entries(d.items))add(cat,i);
   const body=parts.filter(p=>!(p.iris&&d.eye===0)).sort((a,b)=>a.z-b.z).map(p=>this.sprite(p.s,p.d,p.skin?u+'s':p.iris?u+'e':'')).join(''),leg=G.crotch-by,cx=G.cx-bx;
