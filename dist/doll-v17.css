@@ -21,3 +21,6 @@
 .doll17-swatches{display:flex;flex-wrap:wrap;gap:9px;margin:8px 0 14px}
 .doll17-swatches button{width:34px;height:34px;border-radius:50%;border:2px solid #fff;background:radial-gradient(circle at 35% 30%,#ffffffa0 0 18%,transparent 19%),var(--sw);box-shadow:0 0 0 1px #e8d3dc}
 .doll17-swatches button[aria-pressed=true]{box-shadow:0 0 0 2px #c98aa6}
+.sakura-home-art.garden-base,.map-overview .sakura-home-art.garden-base{width:78.53%!important;right:auto}
+.garden-ext{position:absolute;left:78.53%;top:0;width:21.47%;height:100%;pointer-events:none}
+.garden-gap{position:absolute;left:73.27%;top:56.26%;width:5.26%;height:26.06%;pointer-events:none}
