@@ -1,21 +1,22 @@
 const {readFileSync}=require('node:fs'),{runInNewContext}=require('node:vm'),assert=require('node:assert/strict'),{webcrypto}=require('node:crypto');
-const walletSource=readFileSync('dist/wallet.js','utf8');
+const walletSource=readFileSync('dist/living-core.js','utf8')+'\n'+readFileSync('dist/wallet.js','utf8');
 const w=runInNewContext(walletSource+'\nPalaisWallet;',{localRead:()=>null,Date});
 let account=w.initial();assert.equal(account.balance,1000000);
 account=w.apply(account,{messageId:'out-1',conversationId:'rose',amount:'52.00',direction:'out',type:'redpacket'});assert.equal(account.balance,994800);assert.equal(account.ledger.length,1);
 assert.equal(w.apply(account,{messageId:'out-1',amount:'52.00',direction:'out'}),account);
 account=w.apply(account,{messageId:'in-1',conversationId:'rose',amount:'52.00',direction:'in',type:'redpacket'});assert.equal(account.balance,1000000);
 assert.equal(w.apply(account,{messageId:'in-1',amount:'52.00',direction:'in'}),account);
-assert.equal(w.cents('0.01'),1);assert.equal(w.cents('52.5'),5250);assert.throws(()=>w.cents('1.001'));assert.throws(()=>w.cents('-1'));assert.throws(()=>w.cents('0'));assert.throws(()=>w.cents('NaN'));
+assert.equal(w.cents('0.01'),1);assert.equal(w.cents('52.5'),5250);assert.throws(()=>w.cents('1.001'));assert.throws(()=>w.cents('-1'));assert.throws(()=>w.cents('0'));assert.throws(()=>w.cents('NaN'));assert.equal(w.cents('1000000'),100000000);
 assert.throws(()=>w.apply(account,{messageId:'too-large',amount:'10000.01',direction:'out'}),/不足/);assert.equal(account.balance,1000000);
 const core=runInNewContext(readFileSync('dist/core.js','utf8')+'\nPalaisCore;',{URL,Date,TextEncoder,crypto:webcrypto});
 // Exercise the actual message transaction with storage/API failures, including the order of debit and persistence.
+const livingCode=readFileSync('dist/living.js','utf8'),financialHelpers=livingCode.slice(livingCode.indexOf('function reserveRoleMoney('),livingCode.indexOf('function sendGift('));
 const app=readFileSync('dist/app.js','utf8'),send=app.slice(app.indexOf('async function sendMessage('),app.indexOf('\nfunction download('));
 async function scenario(mode,amount='52.00'){
   const notice=[];let uuid=0;
-  const harness=runInNewContext(walletSource+`\nlet histories={},busy=false,phoneLocked=false,controller=null,tab='wechat',current='rose',config={base:'https://chat.example/v1',model:'chat'},key='test',profile={name:'主人'},roles=[{id:'rose',name:'玫瑰小姐',prompt:'角色',emoji:'🌷'}],worldbook=[],voiceMode=false,voiceSettings={autoPlay:false};\n`+send+`\n({send:()=>sendMessage(roles[0],'测试',{type:'redpacket',amount:'${amount}',status:'sent',note:'测试'}),get:()=>({wallet,histories})});`,{
+  const harness=runInNewContext(walletSource+`\nlet histories={},busy=false,phoneLocked=false,controller=null,tab='wechat',current='rose',config={base:'https://chat.example/v1',model:'chat'},key='test',profile={name:'主人'},roles=[{id:'rose',name:'玫瑰小姐',prompt:'角色',emoji:'🌷'}],worldbook=[],voiceMode=false,voiceSettings={autoPlay:false};\n`+financialHelpers+send+`\n({send:()=>sendMessage(roles[0],'测试',{type:'redpacket',amount:'${amount}',status:'sent',note:'测试'}),get:()=>({wallet,histories})});`,{
     localRead:()=>null,Date,PalaisCore:core,DOMException,AbortController,setTimeout,clearTimeout,crypto:{randomUUID:()=>String(++uuid)},
-    requireAPI:()=>true,persist:()=>{if(mode==='storage-fail')throw Error('mock storage failure')},render:()=>{},renderConversation:()=>{},consolidate:async()=>{},memoryPrompt:()=>'',msgForAPI:m=>({role:m.role,content:m.content}),memoryTick:()=>{},isChatView:()=>false,sharedContext:()=>'',relationshipPrompt:()=>'',homeRelationshipPrompt:()=>'',buildChatMessages:async(system,hist)=>[{role:'system',content:system},...hist.map(m=>({role:m.role,content:m.content}))],parseChatReply:text=>core.cardReply(text),incomingMessage:()=>{},reportVisionFailure:()=>{},
+    requireAPI:()=>true,persist:()=>{if(mode==='storage-fail')throw Error('mock storage failure')},render:()=>{},renderConversation:()=>{},consolidate:async()=>{},memoryPrompt:()=>'',msgForAPI:m=>({role:m.role,content:m.content}),memoryTick:()=>{},isChatView:()=>false,sharedContext:()=>'',relationshipPrompt:()=>'',homeRelationshipPrompt:()=>'',musicPrompt:()=>'',moneyPrompt:()=>'',buildChatMessages:async(system,hist)=>[{role:'system',content:system},...hist.map(m=>({role:m.role,content:m.content}))],prepareLivingReply:text=>core.cardReply(text),incomingMessage:()=>{},reportVisionFailure:()=>{},
     request:async()=>{if(mode==='api-fail')throw Error('mock API failure');return '回复'},friendly:e=>e.message,toast:s=>notice.push(s)
   });
   return {harness,notice};

@@ -1,0 +1,126 @@
+/* 清透樱粉：单层白色表面，轻粉点缀，不叠加纹理与做旧阴影。 */
+:root[data-theme="macaron"]{--pink:#ffe8f1;--rose:#bd6b90;--gold:#d4b6c7;--ink:#463d47;--muted:#8c7f8a;--cream:#fff;--line:#f1eaf0;--mc-pink:#fff0f6;--mc-pink-deep:#e9adc9;--mc-mint:#fff;--mc-lemon:#fff;--mc-lav:#fbf7fc;--mc-peach:#fff5f9;--mc-sky:#fff;--mc-gold-soft:#f2e7ee;--mc-shadow:0 4px 18px #6f405c06;--mc-sparkle:none;--mc-corner:none;--mc-flourish:none;--mc-macarons:none}
+:root[data-theme="macaron"] body{background:#fffdfd;background-image:radial-gradient(ellipse at 80% 20%,#fff4f980,transparent 70%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif}
+:root[data-theme="macaron"] .intro:after,:root[data-theme="macaron"] .side-note,:root[data-theme="macaron"] .island:before{display:none}
+:root[data-theme="macaron"] .brandmark{border:0;box-shadow:none;color:#c88eaa}
+:root[data-theme="macaron"] .brand,:root[data-theme="macaron"] .edition{color:#ad819a}
+:root[data-theme="macaron"] .intro p,:root[data-theme="macaron"] .intro small,:root[data-theme="macaron"] .palette{color:#978894}
+:root[data-theme="macaron"] .intro h1{color:#625262}
+:root[data-theme="macaron"] .rule{background:#f2e8ef}
+:root[data-theme="macaron"] .share{background:#fff;border:1px solid #efdfE8;color:#a16b89;box-shadow:none;font-weight:400}
+:root[data-theme="macaron"] .phone{border:7px solid #fff;background:#fff;border-radius:43px;box-shadow:0 0 0 1px #eedee8,0 18px 55px #b87a9b12}
+:root[data-theme="macaron"] .status{background:#fff;color:#6c5d6b}
+:root[data-theme="macaron"] .island{background:#584b57}
+:root[data-theme="macaron"] .homebar{height:4px;background:#e8d6e1}
+:root[data-theme="macaron"] .view{background:#fff;min-height:100%;color:var(--ink)}
+:root[data-theme="macaron"] .heading{margin-bottom:20px}
+:root[data-theme="macaron"] .heading h2{color:#5b4558;font-family:inherit;font-size:22px;font-weight:500;letter-spacing:.5px}
+:root[data-theme="macaron"] .view .heading h2:after{display:none}
+:root[data-theme="macaron"] .eyebrow{color:#b293a8;letter-spacing:1.5px}
+:root[data-theme="macaron"] label{color:#786776}
+:root[data-theme="macaron"] input,:root[data-theme="macaron"] textarea,:root[data-theme="macaron"] select{background:#fff;border:1px solid #ece4eb;border-radius:13px;color:#584a56;box-shadow:none}
+:root[data-theme="macaron"] input:focus,:root[data-theme="macaron"] textarea:focus,:root[data-theme="macaron"] select:focus{border-color:#e5bad0;box-shadow:0 0 0 3px #fff4f9}
+:root[data-theme="macaron"] .primary{background:#ffe8f2;color:#8b4f6d;border:1px solid #f8dce9;border-radius:14px;box-shadow:none;font-weight:500}
+:root[data-theme="macaron"] .secondary,:root[data-theme="macaron"] .round{background:#fff;color:#a17490;border:1px solid #f0e4ec;border-radius:13px;box-shadow:none}
+:root[data-theme="macaron"] .text-button{color:#b67f9d}
+:root[data-theme="macaron"] .notice{background:#fff7fb;border:1px solid #faecf3;box-shadow:none;color:#8a7081;border-radius:14px}
+:root[data-theme="macaron"] .role,:root[data-theme="macaron"] .wx-profile,:root[data-theme="macaron"] .theme-option,:root[data-theme="macaron"] .mascot-option{background:#fff;border:1px solid #f1eaf0;box-shadow:0 3px 13px #b07a9505;border-radius:18px}
+:root[data-theme="macaron"] .avatar{background:#fff4f9;box-shadow:none}
+:root[data-theme="macaron"] .role p,:root[data-theme="macaron"] .section-note,:root[data-theme="macaron"] .api-note{color:#978894}
+:root[data-theme="macaron"] .profile-card,:root[data-theme="macaron"] .wallet-hero,:root[data-theme="macaron"] .moment-cover,:root[data-theme="macaron"] .period-hero,:root[data-theme="macaron"] .wx-wallet-card{background:#fff8fb;border:1px solid #f7e8f0;box-shadow:none;border-radius:22px}
+:root[data-theme="macaron"] .profile-card:before,:root[data-theme="macaron"] .profile-card:after,:root[data-theme="macaron"] .wallet-hero:before,:root[data-theme="macaron"] .moment-cover:before,:root[data-theme="macaron"] .period-hero:before,:root[data-theme="macaron"] .wx-wallet-card:after{display:none}
+:root[data-theme="macaron"] .profile-card .avatar{box-shadow:none;border:1px solid #f1deea}
+:root[data-theme="macaron"] .wx-wallet-card strong,:root[data-theme="macaron"] .wallet-hero strong{color:#c883a6;font-weight:500}
+:root[data-theme="macaron"] .menu-button{border-color:#f4edf2}
+:root[data-theme="macaron"] dialog{background:#fff;border:1px solid #f0e5ed;box-shadow:0 16px 60px #8b60761a;color:#61515f}
+:root[data-theme="macaron"] dialog::backdrop{background:#65546028;backdrop-filter:blur(3px)}
+:root[data-theme="macaron"] dialog h2{font-family:inherit;font-weight:500;font-size:21px;color:#655061}
+:root[data-theme="macaron"] .theme-option.selected,:root[data-theme="macaron"] .mascot-option.selected{border-color:#eac2d7;box-shadow:0 0 0 2px #fff6fa}
+:root[data-theme="macaron"] .dock,:root[data-theme="macaron"] .phone.desktop-mode .dock{background:#ffffffed;border:1px solid #f3e9f0;border-radius:23px;box-shadow:0 3px 15px #9f6e8705;backdrop-filter:none}
+:root[data-theme="macaron"] .dock button{color:#a797a2;font-weight:400;font-family:inherit}
+:root[data-theme="macaron"] .dock button.active,:root[data-theme="macaron"] .phone.desktop-mode .dock button.active{background:#fff0f7!important;color:#bd7b9d}
+:root[data-theme="macaron"] .dock button span{filter:grayscale(.7) opacity(.65)}
+:root[data-theme="macaron"] .dock button.active span{filter:saturate(.7)}
+:root[data-theme="macaron"] .paged-desktop{background:#fff;color:#6d5669}
+:root[data-theme="macaron"] .desktop-heading{height:42px;background:transparent;border:0;border-radius:0;margin:0;padding:6px 27px}
+:root[data-theme="macaron"] .desktop-heading>span{color:#b297aa;font-family:inherit;font-size:8px;letter-spacing:2.5px}
+:root[data-theme="macaron"] .desktop-heading>button{font-size:20px;background:none;color:#c7a5b8}
+:root[data-theme="macaron"] .desktop-clock{padding-top:14px}
+:root[data-theme="macaron"] .desktop-clock>small{font-size:10px;color:#9a8696;letter-spacing:.8px}
+:root[data-theme="macaron"] .desktop-clock #bigTime{font-family:inherit;font-size:61px;font-weight:300;color:#bc7b9e;letter-spacing:-2px;margin:14px 0 10px;line-height:1.1}
+:root[data-theme="macaron"] .desktop-clock>p{font-family:inherit;color:#b19caa;font-size:10px;letter-spacing:.3px}
+:root[data-theme="macaron"] .desk-widget{background:#fff;border:1px solid #f1e8ef;border-radius:23px;box-shadow:0 4px 18px #a8759007;color:#8d6a81}
+:root[data-theme="macaron"] .weather-widget{background:#fff6fa;border-color:#f9e7f0}
+:root[data-theme="macaron"] .weather-widget>strong{font-family:inherit;font-weight:300;color:#c283a5;font-size:43px}
+:root[data-theme="macaron"] .weather-widget>b{color:#8c6d81}
+:root[data-theme="macaron"] .weather-widget>small{color:#aa92a1}
+:root[data-theme="macaron"] .weather-symbol{color:#d9abc3}
+:root[data-theme="macaron"] .companion-widget{background:#fff;border-color:#f1e8ef}
+:root[data-theme="macaron"] .companion-widget>small{color:#b29aa8}
+:root[data-theme="macaron"] .widget-overline{color:#b397a8;letter-spacing:1.3px;font-family:inherit;font-size:7px}
+:root[data-theme="macaron"] .desk-app>span{background:#fff6fb;border:1px solid #f6e9f1;border-radius:17px;box-shadow:none;color:#c491b0;font-size:24px}
+:root[data-theme="macaron"] .desk-app>small{color:#92768b;font-family:inherit;font-size:10px}
+:root[data-theme="macaron"] .desktop-caption{color:#c1acbb;font-size:7px;letter-spacing:2px}
+:root[data-theme="macaron"] .desktop-page-title>small{color:#b49aaa}
+:root[data-theme="macaron"] .desktop-page-title h2{font-family:inherit;font-weight:400;font-size:20px;color:#9b768f;letter-spacing:.5px}
+:root[data-theme="macaron"] .month-widget{background:#fff;border-top:1px solid #f1e8ef}
+:root[data-theme="macaron"] .mini-calendar>small{color:#b19daa}
+:root[data-theme="macaron"] .mini-calendar>span{color:#907388;font-family:inherit;font-size:10px}
+:root[data-theme="macaron"] .mini-calendar .is-today{background:#ffedf6;color:#af648a;box-shadow:none}
+:root[data-theme="macaron"] .todo-widget{background:#fff}
+:root[data-theme="macaron"] .todo-widget-heading b,:root[data-theme="macaron"] .todo-widget label{color:#8f7387;font-weight:400}
+:root[data-theme="macaron"] .todo-widget-heading>button{background:#fff6fa;border-color:#f7e7f0;color:#c28daa}
+:root[data-theme="macaron"] .todo-widget label{border-color:#f6eff4}
+:root[data-theme="macaron"] .todo-empty,:root[data-theme="macaron"] .todo-all{color:#b09aa9}
+:root[data-theme="macaron"] .todo-widget input,:root[data-theme="macaron"] .todo-item input{accent-color:#d8a3bf}
+:root[data-theme="macaron"] .story-widget{background:#fff8fc;border:1px solid #f6e7f0;border-radius:23px;box-shadow:none}
+:root[data-theme="macaron"] .story-ornament{font-size:22px;color:#dfb8ce;background:none;margin:16px auto 10px}
+:root[data-theme="macaron"] .story-widget p{font-family:inherit;font-weight:400;font-size:14px;color:#a78098;line-height:2}
+:root[data-theme="macaron"] .story-widget>small{color:#c2a9b9;font-family:inherit;font-size:7px}
+:root[data-theme="macaron"] .desktop-settings{background:#fff;border:1px solid #f1e8ef;color:#997b90}
+:root[data-theme="macaron"] .desktop-settings>span{color:#b49aaa}
+:root[data-theme="macaron"] .desktop-pagination i{background:#efdfE9}
+:root[data-theme="macaron"] .desktop-pagination [aria-current]>i{background:#d7a2bd}
+:root[data-theme="macaron"] .desktop-pagination>span{color:#bba1b2}
+.message-meta{display:flex;align-items:center;gap:10px;margin-bottom:6px}.msg.user .message-meta{flex-direction:row-reverse}.chat-stamp{display:block;font-size:9px;color:#a697a1;line-height:1.4}.chat-stamp small{display:block;font-size:8px;margin-top:2px}.msg.user .chat-stamp{text-align:right}
+:root[data-theme="macaron"] .chatview{background:#fff}
+:root[data-theme="macaron"] .chat-head{background:#fff;border:0;border-bottom:1px solid #f3ecf1;border-radius:0;box-shadow:none;min-height:64px;position:relative}
+:root[data-theme="macaron"] .chat-head .identity{font-family:inherit;color:#6b5365;font-size:13px;font-weight:400}
+:root[data-theme="macaron"] .chat-head .identity small{color:#b39eac;font-size:8px}
+:root[data-theme="macaron"] .chat-head button{color:#b994aa}
+:root[data-theme="macaron"] .messages:not(.custom-background){background:#fff}
+:root[data-theme="macaron"] .messages{padding:22px 20px 10px}
+:root[data-theme="macaron"] .conversation-date{display:table;margin:0 auto 26px;padding:4px 10px;border:0;border-radius:10px;background:#fff9fc;color:#b49daa;font-size:8px}
+:root[data-theme="macaron"] .msg{flex-direction:column;align-items:flex-start;gap:1px;margin:0 0 23px}
+:root[data-theme="macaron"] .msg.user{align-items:flex-end}
+:root[data-theme="macaron"] .msg .avatar{width:32px;height:32px;background:#fff6fb;border:1px solid #f4e6ef;border-radius:12px;outline:0;box-shadow:none;font-size:18px}
+:root[data-theme="macaron"] .msg .avatar img{border-radius:11px}
+:root[data-theme="macaron"] .msg.user .message-meta .avatar{order:0}
+:root[data-theme="macaron"] .message-body{max-width:91%;min-width:0}
+:root[data-theme="macaron"] .sender-name{font-size:9px;color:#a38a9b;margin:0 0 6px}
+:root[data-theme="macaron"] .bubble{max-width:100%;background:#fff;border:1px solid #f0eaf0;border-radius:5px 16px 16px 16px;box-shadow:0 2px 7px #8d617804;color:#62505d;padding:10px 13px;font-family:inherit;font-size:12px;line-height:1.8}
+:root[data-theme="macaron"] .msg.user .bubble{background:#ffedf6;border:1px solid #ffedf6;border-radius:16px 5px 16px 16px;box-shadow:none;color:#805b72}
+:root[data-theme="macaron"] .speak-message{color:#c0a9b8;font-size:8px;padding:5px 0}
+:root[data-theme="macaron"] .chat-actions{background:#fff;border-top:1px solid #f7f1f5;padding:8px 12px;gap:6px}
+:root[data-theme="macaron"] .chat-actions button{background:#fff;border:1px solid #f3e8f0;border-radius:11px;color:#ae8cA3;padding:6px 8px;font-size:9px}
+:root[data-theme="macaron"] .composer{background:#fff;border:0;border-top:1px solid #f7f0f5;padding:10px 13px;box-shadow:none}
+:root[data-theme="macaron"] .composer textarea{background:#fff;border:1px solid #f0e3ed;border-radius:19px;box-shadow:none;color:#765d6e;font-size:12px;padding:10px 13px}
+:root[data-theme="macaron"] .composer .primary{background:#fff0f7;border:1px solid #fae4f0;box-shadow:none;border-radius:50%;height:40px;min-width:40px;color:#b57b9c;font-size:22px}
+:root[data-theme="macaron"] .empty-chat{color:#b59eac;font-size:11px}
+:root[data-theme="macaron"] .empty-chat span{font-size:28px;color:#d3a2bd}
+:root:not([data-theme="macaron"]) .msg.user .message-meta{order:2}
+:root[data-theme="macaron"] .splash-bg{background:#fff}
+:root[data-theme="macaron"] .splash-corner{display:none}
+:root[data-theme="macaron"] .splash-cameo{background:#fff9fc;border:1px solid #f0dce8;box-shadow:none}
+:root[data-theme="macaron"] .splash-cameo:before{display:none}
+:root[data-theme="macaron"] .splash-title{color:#b798ac;letter-spacing:3px}
+:root[data-theme="macaron"] .splash-welcome{color:#a57e96;font-size:17px}
+:root[data-theme="macaron"] .splash-sub,:root[data-theme="macaron"] .splash-loading{color:#c1a4b6}
+:root[data-theme="macaron"] .splash-btn{background:#fff0f7;border:1px solid #f3d8e7;color:#b07b9b;box-shadow:none}
+:root[data-theme="macaron"] .splash-divider span{background:#f0d4e3;box-shadow:none}
+:root[data-theme="macaron"] .splash-divider:before,:root[data-theme="macaron"] .splash-divider:after{background:#f7edf3}
+:root[data-theme="macaron"] .game-hud button,:root[data-theme="macaron"] .game-side button,:root[data-theme="macaron"] .game-shortcuts button{background:#fffdfef2;border-color:#efdfE9;box-shadow:0 3px 10px #805c7208;color:#ac819b}
+:root[data-theme="macaron"] .home-dialog .dress-stage{background:#fff9fc;border-color:#f2e5ee;border-radius:23px}
+:root[data-theme="macaron"] .home-dialog .dress-confirm{background:#fff}
+@media(max-height:760px){:root[data-theme="macaron"] .desktop-clock #bigTime{font-size:53px}:root[data-theme="macaron"] .desktop-clock{padding-top:6px}}
+@media(max-height:660px){:root[data-theme="macaron"] .desktop-heading{height:30px}:root[data-theme="macaron"] .desktop-clock #bigTime{font-size:45px}}
