@@ -1,0 +1,23 @@
+.chibi.doll17{width:90px;height:160px}
+.chibi.doll17 svg{width:100%;height:100%;overflow:visible;filter:drop-shadow(0 3px 2px #80607414)}
+.world-player .chibi.doll17{width:96px;height:170px;margin-left:-8px}
+.home-guest .chibi.doll17{width:90px;height:160px;margin-left:-5px}
+.living-preview .chibi.doll17,.doll17-stage .chibi.doll17{width:150px;height:260px}
+.doll17-stage{height:280px}
+.living-role-row .chibi.doll17{width:60px;height:100px}
+.doll17-gender{display:flex;gap:8px;margin:12px 0 4px}
+.doll17-gender button{flex:1;padding:9px;border:1px solid #eedde7;border-radius:999px;background:#fff;color:#956f85;font-size:12px}
+.doll17-gender button[aria-pressed=true]{background:#fff0f8;border-color:#ce95b5;color:#b0607f;font-weight:600}
+.doll17-tabs{display:flex;gap:6px;overflow-x:auto;padding:4px 0 8px;margin:8px 0 2px;scrollbar-width:none}
+.doll17-tabs button{flex:0 0 auto;padding:7px 12px;border:1px solid #f0e1e8;border-radius:999px;background:#fffafc;color:#9a7a8a;font-size:11px}
+.doll17-tabs button[aria-pressed=true]{background:#f7d7e4;border-color:#e6b4c8;color:#8f4f69}
+.doll17-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:8px 0 12px}
+.doll17-grid button{position:relative;display:grid;justify-items:center;gap:3px;padding:6px 2px 7px;border:1px solid #eedde7;border-radius:13px;background:#fff;color:#956f85;min-width:0}
+.doll17-grid button[aria-pressed=true]{background:#fff0f8;border-color:#ce95b5}
+.doll17-grid small{font-size:9.5px;line-height:1.25;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.doll17-grid em{position:absolute;top:3px;right:4px;font-style:normal;font-size:8.5px;color:#c08a3e;background:#fff8ea;border-radius:6px;padding:1px 4px}
+.doll17-thumb{width:52px;height:52px}
+.doll17-none{display:grid;place-items:center;width:52px;height:52px;border-radius:12px;background:#faf3f6;color:#b896a6;font-size:11px}
+.doll17-swatches{display:flex;flex-wrap:wrap;gap:9px;margin:8px 0 14px}
+.doll17-swatches button{width:34px;height:34px;border-radius:50%;border:2px solid #fff;background:radial-gradient(circle at 35% 30%,#ffffffa0 0 18%,transparent 19%),var(--sw);box-shadow:0 0 0 1px #e8d3dc}
+.doll17-swatches button[aria-pressed=true]{box-shadow:0 0 0 2px #c98aa6}

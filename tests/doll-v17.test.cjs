@@ -1,0 +1,20 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const ctx={living:{avatars:{}},roles:[{id:'a'},{id:'b'}],homeland:{owned:[]},escapeHtml:s=>String(s),crypto:require('crypto'),structuredClone,mediaCache:new Map(),chibiAvatar:()=>'',openChibiEditor:()=>{}};vm.createContext(ctx);
+for(const f of['dist/doll-v17-data.js','dist/doll-v17.js'])vm.runInContext(fs.readFileSync(f,'utf8').replace(/^const (\w+)=/m,'globalThis.$1='),ctx);
+const D=ctx.DollV17,G=D.data.genders;
+assert.strictEqual(JSON.stringify(Object.keys(G).sort()),JSON.stringify(['female','male']));
+for(const [g,gm] of Object.entries(G)){assert.strictEqual(gm.cats.hair.length,5);assert.strictEqual(gm.cats.face.length,10);for(const list of Object.values(gm.cats))for(const e of list)for(const p of e.parts){const [x,y,w,h]=p.s;assert.ok(x>=0&&y>=0&&x+w<=D.data.size[0]&&y+h<=D.data.size[1],g+' sprite in atlas')}}
+assert.strictEqual(D.data.eyes.length,10);assert.strictEqual(D.data.skins.length,6);
+let f=D.fresh('female');assert.ok(D.valid(f));
+f=D.pick(f,'dress',2);assert.strictEqual(f.items.top,undefined);assert.strictEqual(f.items.bottom,undefined);assert.strictEqual(f.items.dress,2);
+f=D.pick(f,'top',1);assert.strictEqual(f.items.dress,undefined);
+let m=D.pick(D.fresh('male'),'shorts',0);assert.strictEqual(m.items.bottom,undefined);m=D.pick(m,'set',1);assert.strictEqual(m.items.shorts,undefined);
+assert.ok(!D.valid({...m,items:{dress:0}}),'male cannot wear female-only category');
+assert.ok(!D.valid({...f,hair:99}));assert.ok(!D.valid({...f,eye:10}));
+assert.ok(D.valid(D.pick(D.fresh('male'),'set',8)));
+assert.strictEqual(JSON.stringify(D.unpaid(D.fresh('female'))),JSON.stringify([]),'starter outfit is free');
+assert.strictEqual(JSON.stringify(D.unpaid(D.pick(D.fresh('female'),'dress',3))),JSON.stringify(['f.dress.3']));
+ctx.homeland.owned=['f.dress.3'];assert.strictEqual(JSON.stringify(D.unpaid(D.pick(D.fresh('female'),'dress',3))),JSON.stringify([]));
+ctx.living.avatars.b={mix:{body:0}};assert.strictEqual(D.genderOf('b'),'male');assert.strictEqual(D.genderOf('me'),'female');
+assert.ok(D.render(D.fresh('male')).includes('doll-leg-left'));
+console.log('doll v17 checks passed: atlas bounds, gender wardrobes, dress/set replacement, pricing and legacy gender mapping');
