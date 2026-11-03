@@ -1,5 +1,5 @@
 let desktopPage=0,desktopTodos=localRead('desktopTodos',[]),desktopWeather=localRead('desktopWeather',{city:null,data:null,at:0}),desktopWeatherBusy=false,desktopCitySearch=0;
-const desktopApps={shop:['▤','日常小商店'],forum:['♧','花瓣论坛'],simulator:['✧','世界模拟器'],music:['♫','一起听歌'],expenses:['▤','小小账本'],wechat:['♡','微信'],homeland:['⌂','玫瑰家园'],calendar:['▦','日历'],weather:['☀','天气'],todos:['✓','待办事项'],period:['☾','经期记录'],book:['♧','世界书'],memory:['✧','记忆花园'],stickers:['☺','表情小匣'],api:['⚙','API 设置']};
+const desktopApps={shop:['▤','购物'],forum:['♧','花瓣论坛'],simulator:['✧','世界模拟器'],music:['♫','一起听歌'],expenses:['▤','小小账本'],wechat:['♡','微信'],homeland:['⌂','玫瑰家园'],calendar:['▦','日历'],weather:['☀','天气'],todos:['✓','待办事项'],period:['☾','经期记录'],book:['♧','世界书'],memory:['✧','记忆花园'],stickers:['☺','表情小匣'],api:['⚙','API 设置']};
 function palacePetHTML(kind){return `<span class="palace-pet palace-pet-${['cat','dog','bunny'].includes(kind)?kind:'cat'}" role="img" aria-label="${{cat:'奶白猫',dog:'奶白狗',bunny:'宫廷兔'}[kind]||'奶白猫'}"></span>`}
 function homePetArt(kind){return palacePetHTML(kind)}
 function desktopApp(id){const [icon,n]=desktopApps[id];return `<button class="desk-app desk-app-${id}" data-go="${id}"><span aria-hidden="true">${icon}</span><small>${n}</small></button>`}
