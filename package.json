@@ -1,10 +1,10 @@
 {
   "name": "rose-palais-phone",
-  "version": "18.0.0",
+  "version": "19.0.0",
   "private": true,
   "description": "玫瑰小宫殿纯前端小手机",
   "scripts": {
-    "test": "node tests/core.test.cjs && node tests/v3.test.cjs && node tests/wallet.test.cjs && node tests/social.test.cjs && node tests/v6.test.cjs && node tests/home.test.cjs && node tests/home-world.test.cjs && node tests/theme.test.cjs && node tests/desktop.test.cjs && node tests/chat-ui.test.cjs && node tests/daily.test.cjs && node tests/studio.test.cjs && node tests/living.test.cjs && node tests/home-cash.test.cjs && node tests/renovation.test.cjs && node tests/home-flat.test.cjs && node tests/doll-v17.test.cjs && node tests/doll-save-race.test.cjs && node tests/wx18.test.cjs"
+    "test": "node tests/core.test.cjs && node tests/v3.test.cjs && node tests/wallet.test.cjs && node tests/social.test.cjs && node tests/v6.test.cjs && node tests/home.test.cjs && node tests/home-world.test.cjs && node tests/theme.test.cjs && node tests/desktop.test.cjs && node tests/chat-ui.test.cjs && node tests/daily.test.cjs && node tests/studio.test.cjs && node tests/living.test.cjs && node tests/home-cash.test.cjs && node tests/renovation.test.cjs && node tests/home-flat.test.cjs && node tests/doll-v17.test.cjs && node tests/doll-save-race.test.cjs && node tests/wx18.test.cjs && node tests/wx19.test.cjs"
   },
   "engines": {
     "node": ">=22"
