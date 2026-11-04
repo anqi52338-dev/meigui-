@@ -1,0 +1,4 @@
+const A=require('node:assert/strict'),F=require('../dist/fresh24-core.js');
+A.equal(F.add('2024-02-28',1),'2024-02-29');A.throws(()=>F.date('2026-02-30'));let r=F.water([],'2026-11-04','a');r=F.water(r,'2026-11-04','a');A.equal(r.length,1);r=F.water(r,'2026-11-03','b');r=F.water(r,'2026-11-04','c');A.equal(F.stats(r,'2026-11-04',7).total,3);r=F.undo(r,'2026-11-04');A.deepEqual(r.map(x=>x.id),['a','b']);A.equal(F.undo(r,'2026-11-01'),r);A.equal(F.stats(r,'2026-11-04',1).total,1);
+const c=F.cycle([{start:'2026-09-01',end:'2026-09-05'},{start:'2026-09-29',end:'2026-10-03'},{start:'2026-10-29',end:'2026-11-02'}]);A.equal(c.average,29);A.equal(c.next,'2026-11-27');A.equal(F.cycle([],31).average,31);A.equal(F.cycle([]).next,null);
+console.log('Fresh24: leap dates, duplicate water entries, today-only undo, rolling totals and historical cycle estimates passed');
