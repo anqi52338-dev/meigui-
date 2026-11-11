@@ -1,7 +1,14 @@
 {
   "schema": 1,
-  "latest": 32,
+  "latest": 33,
   "releases": [
+    {
+      "version": 33,
+      "date": "2026-11-11",
+      "notes": [
+        "聊天小工具新增修改头像和信息，背景入口仅修改背景"
+      ]
+    },
     {
       "version": 32,
       "date": "2026-11-11",
@@ -29,7 +36,7 @@
     }
   ],
   "apk": {
-    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v32.apk",
-    "sha256": "f588d7786df4e9551c50f342a504e567dbd1ac50a977ed664e4478bfec8e73d3"
+    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v33.apk",
+    "sha256": "5c50e5d32005d18715fb04699a12f16084f369b70d373ce7560ec7e0fc65a0e7"
   }
 }

@@ -11,7 +11,7 @@ function boot(entries={},native=null,path='index.html'){
  let redirected='';const location=new URL('https://example.test/meigui-/'+path+'?app=1');location.replace=s=>redirected=s;
  const c={Update31:U,localStorage:store,location,URL,Object,NativeRose:native?{getAppInfo31:()=>JSON.stringify(native)}:undefined};c.window=c;vm.createContext(c);vm.runInContext(fs.readFileSync('dist/boot31.js','utf8'),c);return {c,store,redirected};
 }
-A.equal(boot().c.roseBuild31.firstVersion,32);A.equal(boot({'palais.roles':'saved'}).redirected,'https://example.test/meigui-/layout30.html?app=1');
+A.equal(boot().c.roseBuild31.firstVersion,U.CURRENT);A.equal(boot({'palais.roles':'saved'}).redirected,'https://example.test/meigui-/layout30.html?app=1');
 const updated=boot({'palais.firstVersion31':'3'},{firstVersion:30,currentVersion:31});A.equal(updated.c.roseBuild31.firstVersion,30);A.equal(updated.store['palais.roles'],undefined);
 const latest=boot({'palais.uiMode31':'latest','palais.roles':'unchanged'},{firstVersion:30,currentVersion:31},'layout30.html');A.match(latest.redirected,/index.html\?app=1$/);A.equal(latest.store['palais.roles'],'unchanged');
 for(const page of ['index.html','layout30.html','layout31.html']){const s=fs.readFileSync('dist/'+page,'utf8');for(const m of s.matchAll(/(?:src|href)="([^"?#]+)(?:[?#][^"]*)?"/g))A.ok(fs.existsSync('dist/'+m[1]),page+' missing '+m[1]);A.ok(s.indexOf('boot31.js')<s.indexOf('core.js"></script>'))}
