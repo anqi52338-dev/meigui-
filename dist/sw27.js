@@ -1,0 +1,14 @@
+/* Cache app assets only; never API traffic, keys or user records. */
+const PREFIX='rose-phone:'+self.registration.scope+':',CACHE=PREFIX+'v27';
+const ASSETS=["./", "index.html", "style.css", "advanced.css", "wechat.css", "v6.css", "homeland.css", "themes.css", "desktop.css", "clear.css", "daily.css", "studio.css", "living.css?v=20", "home-renovation.css?v=16.2", "doll-v17.css?v=17", "pets-art.js", "themes.js", "wx18.css?v=18", "wx19.css?v=19", "update21.css?v=21", "upgrade22.css?v=22", "tidy23.css?v=23", "fresh24.css?v=24", "fix25.css?v=25", "chat26.css?v=26", "chat27.css?v=27", "manifest.webmanifest", "app-icon27-192.png", "core.js", "features.js?v=25", "worldbook.js", "life.js", "connections.js?v=27", "notifications.js?v=27", "stickers.js?v=27", "wallet.js", "wechat.js", "social.js", "threaded-feed.js", "voice.js", "security.js", "home-engine.js", "home-world.js", "home-art.js", "homeland.js?v=16.2", "desktop-core.js", "desktop.js?v=22", "chat-ui.js", "daily-core.js", "daily.js", "studio-core.js", "studio.js", "living-core.js?v=20", "living.js?v=22", "living-home.js?v=22", "home-cash.js", "reference-characters.js", "doll-layers.js?v=16.2", "doll-v17-data.js?v=17", "doll-v17.js?v=17.3.1", "home-renovation.js", "furniture-data.js?v=17", "home-flat.js?v=17", "wx18-core.js", "app.js?v=27", "wx18.js?v=27", "wx19-core.js", "wx19-icons.js", "wx19.js?v=27", "update21.js?v=27", "upgrade22-core.js?v=22", "upgrade22.js?v=22", "tidy23.js?v=23", "fresh24-core.js?v=24", "fresh24.js?v=24", "fix25-core.js?v=25", "fix25.js?v=27", "chat26-core.js?v=26", "chat26.js?v=27", "chat27-core.js?v=27", "sticker-pack27.js?v=27", "chat27.js?v=27", "sticker-gallery27.js?v=27"];
+const allowed=new Set(ASSETS.map(x=>new URL(x,self.registration.scope).pathname));
+self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));
+self.addEventListener('activate',event=>event.waitUntil((async()=>{for(const k of await caches.keys())if(k.startsWith(PREFIX)&&k!==CACHE)await caches.delete(k);await self.clients.claim()})()));
+self.addEventListener('message',event=>{if(event.data==='ACTIVATE27')self.skipWaiting()});
+self.addEventListener('fetch',event=>{
+ const req=event.request,url=new URL(req.url),scope=new URL(self.registration.scope);
+ if(req.method!=='GET'||url.origin!==scope.origin||!url.pathname.startsWith(scope.pathname))return;
+ const nav=req.mode==='navigate'&&(url.pathname===scope.pathname||url.pathname===new URL('index.html',scope).pathname);
+ if(!nav&&!allowed.has(url.pathname))return;
+ event.respondWith((async()=>{const cache=await caches.open(CACHE);try{const response=await fetch(req);if(response.ok&&!response.redirected)try{await cache.put(nav?'index.html':req,response.clone())}catch{};return response}catch(e){const stored=await cache.match(nav?'index.html':req);if(stored)return stored;throw e}})());
+});

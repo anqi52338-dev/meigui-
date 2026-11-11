@@ -1,0 +1,18 @@
+const A=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const C=require('../dist/chat27-core.js'),C26=require('../dist/chat26-core.js');
+const cat=[{id:'basic-happy',name:'开心',emoji:'😊',mood:'开心'},{id:'custom-1',name:'等你消息',custom:true,mood:'想念对方'}];
+for(const text of ['你好[[表情包|basic-happy]]','你好【表情包：开心；情绪说明：开心】','你好[表情包：开心，情绪说明：开心]']){const parsed=C.clean(text,cat);A.equal(parsed.content,'你好');A.equal(parsed.sticker.emoji,'😊')}
+A.equal(C.clean('[[表情包|unknown]]',cat).sticker,undefined);A.equal(C.clean('你好\n情绪说明：安慰一下',cat).content,'你好');
+A.deepEqual(C.split('[小猫]你好\n第二句','小猫',false,10,C26),['你好','第二句']);
+A.equal(C.split('第一句话比较长，今天想和你分享一些小事情。第二句话也稍微长一点，我们明天还可以继续聊天。','小猫',false,10,C26).length,2);
+A.equal(C.split(Array(15).fill('一句话').join('\n'),'猫',false,3,C26).length,3);
+A.equal(C.canSee([],'a',{author:'me',hiddenFrom27:['a']},[],()=>true),false);
+A.equal(C.canSee([],'a',{author:'me'},[{id:'a',friend27:'removed'}],()=>true),false);
+A.equal(C.canSee([],'b',{author:'me',hiddenFrom27:['a']},[],()=>true),true);
+const lc={window:{}};vm.createContext(lc);vm.runInContext(fs.readFileSync('dist/living-core.js','utf8'),lc);const L=lc.window.PalaisLiving;
+const state={roles:[{id:'a'},{id:'b'}],histories:{a:[{id:'u',role:'user',card:{type:'transfer',recipient:'a',amount:'10.00',status:'sent'}}],b:[{id:'keep',role:'user',content:'保留私聊'}],g:[{id:'old',role:'assistant',sender:'a',audience:['a','b']},{id:'other',role:'assistant',sender:'b',audience:['a','b']}]},wallet:{balance:9000,ledger:[],accounts:{a:{balance:10000,ledger:[]},b:{balance:10000,ledger:[]}},kinCards:{a:{}},roleTransfers:[{id:'u',sender:'a',cents:1000,status:'reserved-user'}]},groups:[{id:'g',members:['a','b']}],memories:{a:{summary:'删除'},'shared:a':{},b:{summary:'保留'}},relations:[{a:'a',b:'b'}],moments:[{id:'m',author:'me',comments:[{id:'c1',author:'a'},{id:'c2',author:'b',parentId:'c1'}]}],notices:[{actor:'a'},{actor:'b'}],feedEvents:[],living:{guests:['a','b'],avatars:{a:{},b:{}},events:[],jobs:[]},wx18:{prefs:{a:{},b:{}},drafts:{a:'delete',b:'keep'}},dissolved:{}};
+const purged=C.purge(state,'a',L,C26);A.equal(purged.roles.length,1);A.equal(purged.wallet.balance,10000);A.equal(purged.wallet.accounts.a,undefined);A.equal(purged.histories.a,undefined);A.equal(purged.histories.b[0].content,'保留私聊');A.deepEqual(purged.groups[0].members,['b']);A.deepEqual(purged.histories.g[0].audience,['a','b']);A.equal(purged.memories.b.summary,'保留');A.equal(purged.moments[0].comments.length,0);A.equal(state.roles.length,2);A.equal(state.wallet.balance,9000);
+const pack=vm.runInNewContext(fs.readFileSync('dist/sticker-pack27.js','utf8')+';stickerPack27');A.equal(pack.length,25);A.equal(new Set(pack.map(s=>s.id)).size,25);for(const s of pack){A.ok(s.name&&s.mood&&s.mood.length>5);A.ok(fs.existsSync('dist/'+s.src))}
+const manifest=JSON.parse(fs.readFileSync('dist/manifest.webmanifest','utf8'));A.equal(manifest.display,'standalone');A.equal(manifest.scope,'./');for(const i of manifest.icons)A.ok(fs.existsSync('dist/'+i.src));
+const listeners={},sw={registration:{scope:'https://example.test/meigui-/'},addEventListener:(k,f)=>listeners[k]=f};vm.runInNewContext(fs.readFileSync('dist/sw27.js','utf8'),{self:sw,URL,Set});let intercepted=false;for(const request of [{method:'POST',url:'https://example.test/meigui-/api',mode:'cors'},{method:'GET',url:'https://other.test/api',mode:'cors'},{method:'GET',url:'https://example.test/private.json',mode:'cors'}])listeners.fetch({request,respondWith:()=>intercepted=true});A.equal(intercepted,false);
+console.log('v27: sticker metadata cleanup, natural bubble splitting, hidden Moments privacy, permanent-role deletion/refund/isolation, 25 supplied assets and scoped PWA manifest/cache passed');

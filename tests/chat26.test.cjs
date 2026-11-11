@@ -38,6 +38,14 @@ const c={Chat26:C,PalaisLiving:L,AbortSignal,AbortController,DOMException,Date,M
  await c.send26(g,'hi');A.equal(c.histories.g.filter(m=>m.role==='user').length,1);A.equal(c.histories.g.filter(m=>m.sender==='b').length,2);A.match(c.histories.g[0].errors26.a,/正文/);A.equal(c.busy,false);
  c.fetch=async()=>({ok:true,json:async()=>({choices:[{message:{content:'重试成功'}}]})});await c.reply26(g,c.histories.g[0],null,true);A.equal(c.histories.g.filter(m=>m.role==='user').length,1);A.equal(c.histories.g.filter(m=>m.sender==='b').length,2);A.equal(c.histories.g.filter(m=>m.sender==='a').length,1);
  const old=c.histories.g.filter(m=>m.sender==='b');c.fetch=async()=>({ok:false,status:503,json:async()=>({error:{message:'down'}})});await c.reply26(g,c.histories.g[0],'b',true);A.ok(old.every(m=>c.histories.g.includes(m)));
+ // Withdrawing while fetch is in flight aborts the signal and discards even a late provider result.
+ c.persist=()=>{};c.mutating27=false;let resolveLate,seenSignal,fetchStarted;const started=new Promise(r=>fetchStarted=r);
+ c.fetch=async(_,opts)=>{seenSignal=opts.signal;fetchStarted();return await new Promise(r=>resolveLate=r)};
+ const withdrawal=fs.readFileSync('dist/chat27.js','utf8').split('withdraw26=function')[1].split('function editMessage27')[0];
+ vm.runInContext('let mutating27=false;withdraw26=function'+withdrawal,c);
+ const inFlight=c.send26(g,'发错了');await started;const wrong=c.histories.g.at(-1);A.equal(c.withdraw26(g,wrong),true);A.equal(seenSignal.aborted,true);
+ resolveLate({ok:true,json:async()=>({choices:[{message:{content:'不应保存的迟到回复'}}]})});await inFlight;
+ A.equal(c.histories.g.at(-1).kind,'recall');A.equal(c.histories.g.some(m=>m.content==='不应保存的迟到回复'),false);A.equal(c.busy,false);
  // Persist failure must restore the pending card and both balances, with no orphan receipt.
  c.histories.x=[JSON.parse(JSON.stringify(user))];c.wallet=userTransfer();c.persist=()=>{throw Error('quota')};A.throws(()=>c.settle26({id:'x'},c.histories.x[0],true),/quota/);A.equal(c.histories.x.length,1);A.equal(c.histories.x[0].card.status,'sent');A.equal(c.wallet.accounts.a.balance,100000);
  console.log('v26: response formats/errors, split replies, isolated group failures/retries, transfer conservation/idempotency and storage rollback passed');

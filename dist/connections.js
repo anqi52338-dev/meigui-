@@ -5,7 +5,7 @@ const PalaisSocial={
   connect(relations,members,source,reason){const next=relations.slice();for(let i=0;i<members.length;i++)for(let j=i+1;j<members.length;j++){const key=this.pair(members[i],members[j]);if(!next.some(x=>x.key===key))next.push({key,a:members[i],b:members[j],source,reason})}return next},
   canSee(relations,actor,moment){return this.knows(relations,actor,moment.author)},
   candidates(relations,roles,moment,parent=null){return roles.filter(r=>this.canSee(relations,r.id,moment)&&(!parent||this.visibleComments(relations,r.id,moment).some(c=>c.id===parent.id)))},
-  visibleComments(relations,actor,moment){const all=moment.comments||[],visible=new Set(all.filter(c=>this.knows(relations,actor,c.author)).map(c=>c.id));let changed=true;while(changed){changed=false;all.forEach(c=>{if(visible.has(c.id)&&c.parentId&&!visible.has(c.parentId)){visible.delete(c.id);changed=true}})}return all.filter(c=>visible.has(c.id))},
+  visibleComments(relations,actor,moment){if(!this.canSee(relations,actor,moment))return [];const all=moment.comments||[],visible=new Set(all.filter(c=>this.knows(relations,actor,c.author)).map(c=>c.id));let changed=true;while(changed){changed=false;all.forEach(c=>{if(visible.has(c.id)&&c.parentId&&!visible.has(c.parentId)){visible.delete(c.id);changed=true}})}return all.filter(c=>visible.has(c.id))},
   groupHistory(history,actor){return history.filter(m=>(m.audience||[]).includes(actor))}
 };
 const storedSocial=localRead('socialState',null);
