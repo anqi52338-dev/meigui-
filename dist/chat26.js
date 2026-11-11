@@ -4,6 +4,7 @@ const staged26=new Map();
 let active26=null;
 request=async function(c,messages,max_tokens=1024,signal){
   if(!signal&&active26&&typeof messages[0]?.content==='string'&&messages[0].content.includes('你是对话长期记忆整理器'))signal=active26.controller.signal;
+  max_tokens=typeof outputBudget28==='function'?outputBudget28(max_tokens):max_tokens;
   const body={model:c.model,messages,stream:false,max_tokens};
   for(let attempt=0;attempt<2;attempt++){
     const res=await fetch(endpoint(c.base),{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+c.key},body:JSON.stringify(body),signal:signal?AbortSignal.any([signal,AbortSignal.timeout(45000)]):AbortSignal.timeout(45000)});
