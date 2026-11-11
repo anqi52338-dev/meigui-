@@ -1,7 +1,16 @@
 {
   "schema": 1,
-  "latest": 34,
+  "latest": 35,
   "releases": [
+    {
+      "version": 35,
+      "date": "2026-11-11",
+      "notes": [
+        "群聊两列头像、移除氛围、@定向回复与引用",
+        "修复角色历史图片请求格式，保存识图检测记录",
+        "打开朋友圈互动列表即可消除该批未读提示"
+      ]
+    },
     {
       "version": 34,
       "date": "2026-11-11",
@@ -44,7 +53,7 @@
     }
   ],
   "apk": {
-    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v34.apk",
-    "sha256": "72d193803b18cb01dbc4dc894d83ffe6aa416f6f4dc6831e8c77c9e45a473d18"
+    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v35.apk",
+    "sha256": "a45f579a06931bea2865564e17652d5defb74f97c49e806f4b1b8599816feb10"
   }
 }

@@ -19,7 +19,7 @@ unsigned=build/'unsigned.apk';shutil.copyfile(base,unsigned)
 with zipfile.ZipFile(unsigned,'a',zipfile.ZIP_DEFLATED) as z:
     z.write(dex/'classes.dex','classes.dex')
     for f in sorted((repo/'dist').rglob('*')):
-        if not f.is_file() or f.name=='app-updates.json' or f.suffix.lower() in ('.apk','.zip','.gz') or 'downloads' in f.relative_to(repo/'dist').parts:continue
+        if not f.is_file() or f.name=='app-updates.json' or f.relative_to(repo/'dist').as_posix()=='brand/envelope-v31.png' or f.suffix.lower() in ('.apk','.zip','.gz') or 'downloads' in f.relative_to(repo/'dist').parts:continue
         name=f.relative_to(repo/'dist').as_posix();data=f.read_bytes()
         if name in ('index.html','layout30.html','layout31.html'):data=data.decode('utf-8').replace('</body>','<script src="native30.js"></script></body>').encode('utf-8')
         if name in ('upgrade22.js','legacy30/upgrade22.js','legacy31/upgrade22.js'):

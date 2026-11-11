@@ -1,7 +1,7 @@
 /* Version policy is independent of chat backups and never clears user data. */
 (function(root){
- const CURRENT=34, LAYOUTS={latest:'index.html',v31:'layout31.html',v30:'layout30.html'};
- const releases=[{version:34,date:'2026-11-11',notes:['世界书支持JSON/TXT预览导入','上传表情包与文字使用独立气泡，emoji保持原样']},{version:33,date:'2026-11-11',notes:['聊天小工具新增修改头像和信息，背景入口仅修改背景']},{version:32,date:'2026-11-11',notes:['聊天操作移到长按菜单，去除重复按钮','三页API设置与三组聊天API切换','真实主动语音、系统字体与键盘避让']},{version:31,date:'2026-11-11',notes:['修正安卓顶部安全区与首页高度','信封图标；检查更新与旧版布局切换','修正识图测试输出上限与 DeepSeek 思考参数']},{version:30,date:'2026-11-10',notes:['安卓独立安装包；系统文件导出与一键搬家']}];
+ const CURRENT=35, LAYOUTS={latest:'index.html',v31:'layout31.html',v30:'layout30.html'};
+ const releases=[{version:35,date:'2026-11-11',notes:['群聊两列头像、移除氛围、@定向回复与引用','修复角色历史图片请求格式，保存识图检测记录','打开朋友圈互动列表即可消除该批未读提示']},{version:34,date:'2026-11-11',notes:['世界书支持JSON/TXT预览导入','上传表情包与文字使用独立气泡，emoji保持原样']},{version:33,date:'2026-11-11',notes:['聊天小工具新增修改头像和信息，背景入口仅修改背景']},{version:32,date:'2026-11-11',notes:['聊天操作移到长按菜单，去除重复按钮','三页API设置与三组聊天API切换','真实主动语音、系统字体与键盘避让']},{version:31,date:'2026-11-11',notes:['修正安卓顶部安全区与首页高度','信封图标；检查更新与旧版布局切换','修正识图测试输出上限与 DeepSeek 思考参数']},{version:30,date:'2026-11-10',notes:['安卓独立安装包；系统文件导出与一键搬家']}];
  const validVersion=n=>Number.isSafeInteger(n)&&n>0&&n<=1000000;
  function history(list,first){return list.filter(r=>r.version>=first).sort((a,b)=>b.version-a.version)}
  function mode(first,saved){return saved==='latest'?'latest':saved==='v30'&&first<=30?'v30':saved==='v31'&&first<=31?'v31':first<=30?'v30':first<=31?'v31':'latest'}

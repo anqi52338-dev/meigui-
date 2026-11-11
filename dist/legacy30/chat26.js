@@ -33,7 +33,7 @@ async function reply26(r,user,selected=null,retry=false,options={}){
   const id=r.id,hist=histories[id]||[],index=hist.findIndex(m=>m.id===user.id);if(index<0||user.kind==='recall')return false;
   busy=true;controller=new AbortController();const signal=controller.signal,timer=setTimeout(()=>signal.aborted||controller?.abort(),180000);let ok=true;
   const candidates=(r.members?r.members.map(id=>roles.find(x=>x.id===id)).filter(Boolean):[r]).filter(x=>!options.intro||!(r.introduced||[]).includes(x.id));
-  let speakers=selected?candidates.filter(s=>s.id===selected):candidates;
+  let speakers=selected?candidates.filter(s=>s.id===selected):r.members&&typeof groupRecipients35==='function'?groupRecipients35(r,user,candidates):candidates;
   if(retry&&!selected){const missing=speakers.filter(s=>!hist.some(m=>m.replyTo26===user.id&&m.sender===s.id&&m.kind!=='recall'));if(missing.length)speakers=missing}
   const job={id,userId:user.id,controller};active26=job;wxTypingId=id;render();
   try{
@@ -44,11 +44,11 @@ async function reply26(r,user,selected=null,retry=false,options={}){
         const after=hist.slice(index+1).findIndex(m=>m.role==='user'&&!m.receipt26),end=after<0?hist.length:index+1+after;
         const oldReplies=hist.filter((m,i)=>m.role==='assistant'&&!m.receipt26&&(m.replyTo26===user.id||!m.replyTo26&&i>index&&i<end)&&(m.sender===speaker.id||!m.sender&&!r.members));
         const visible=(r.members?groupSeen(r,speaker.id):hist).filter(m=>hist.indexOf(m)<end&&(!retry||!oldReplies.includes(m))&&m.kind!=='recall');
-        const system=PalaisCore.systemPrompt(speaker,worldbook,visible,id)+'\n'+(r.members?groupMemory(r,speaker.id):memoryPrompt(id)+'\n'+sharedContext(speaker.id))+'\n'+relationshipPrompt(speaker.id)+homeRelationshipPrompt(speaker.id,r.members)+(r.members?'':musicPrompt(speaker.id))+(r.members||typeof friendPrompt27!=='function'?'':friendPrompt27(speaker))+'\n用户称呼：'+profile.name+(r.members?'\n你在群聊「'+r.name+'」，成员：'+candidates.map(x=>x.name).join('、')+'。只扮演自己，未公开的私聊不能泄露。'+(options.intro?'请按自己人设自我介绍。':'自然回应最近消息。'):'')+moneyPrompt(speaker.id)+stylePrompt26()+(retry&&oldReplies.length?'\n本次仅重新生成文字，禁止发起新的转账、红包、亲属卡或处理收款。':pendingPrompt26(visible,speaker.id));
+        const system=PalaisCore.systemPrompt(speaker,worldbook,visible,id)+'\n'+(r.members?groupMemory(r,speaker.id):memoryPrompt(id)+'\n'+sharedContext(speaker.id))+'\n'+relationshipPrompt(speaker.id)+homeRelationshipPrompt(speaker.id,r.members)+(r.members?'':musicPrompt(speaker.id))+(r.members||typeof friendPrompt27!=='function'?'':friendPrompt27(speaker))+'\n用户称呼：'+profile.name+(r.members?'\n你在群聊「'+r.name+'」，成员：'+candidates.map(x=>x.name).join('、')+'。只扮演自己，未公开的私聊不能泄露。'+(options.intro?'请按自己人设自我介绍。':'自然回应最近消息。'):'')+moneyPrompt(speaker.id)+stylePrompt26()+(typeof quotePrompt35==='function'?quotePrompt35(visible):'')+(retry&&oldReplies.length?'\n本次仅重新生成文字，禁止发起新的转账、红包、亲属卡或处理收款。':pendingPrompt26(visible,speaker.id));
         const raw=await request({...config,key},await buildChatMessages(system,visible.slice(-40)),/reason|think|deepseek-r|o[134]/i.test(config.model)?4096:2048,signal);
         if(signal.aborted||phoneLocked||user.kind==='recall'||!hist.includes(user))throw new DOMException('Stopped','AbortError');
         const commands=[];const text=raw.replace(/\[\[(收款|退回转账)\|([^\]\n]+)\]\]/g,(_,a,b)=>{commands.push([a,b]);return ''});
-        const parsed=text.trim()?prepareLivingReply(text):{content:''};
+        const parsed=text.trim()?(typeof parseReply35==='function'?parseReply35(text,r,speaker,visible):prepareLivingReply(text)):{content:''};
         if(retry&&oldReplies.length){delete parsed.card;delete parsed.kin}
         const chunks=(typeof Chat27==='undefined'?Chat26.bubbles:Chat27.split)(parsed.content,speaker.name,style26.actions,style26.bubbles,Chat26);if(!chunks.length&&!parsed.sticker&&!parsed.card&&!commands.length)throw Error('模型只返回了动作或空内容，请重新生成');
         if(!chunks.length&&(parsed.sticker||parsed.card))chunks.push('');

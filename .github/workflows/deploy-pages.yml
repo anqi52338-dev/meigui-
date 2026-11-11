@@ -25,6 +25,8 @@ jobs:
       - uses: actions/configure-pages@v5
         with:
           enablement: true
+      - name: Assemble verified signed APK segments
+        run: python3 android/assemble_apk.py
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

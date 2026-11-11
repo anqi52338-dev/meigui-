@@ -100,11 +100,11 @@ public class MainActivity extends Activity {
   private void rememberFirstVersion31(){
     android.content.SharedPreferences p=getSharedPreferences("app-release",MODE_PRIVATE);
     if(p.contains("firstVersion"))return;
-    int first=34;try{android.content.pm.PackageInfo i=getPackageManager().getPackageInfo(getPackageName(),0);if(i.firstInstallTime<i.lastUpdateTime)first=30;}catch(Exception ignored){}
+    int first=35;try{android.content.pm.PackageInfo i=getPackageManager().getPackageInfo(getPackageName(),0);if(i.firstInstallTime<i.lastUpdateTime)first=30;}catch(Exception ignored){}
     p.edit().putInt("firstVersion",first).commit();
   }
   public class SaveBridge {
-    @JavascriptInterface public String getAppInfo31(){try{return new org.json.JSONObject().put("currentVersion",34).put("firstVersion",getSharedPreferences("app-release",MODE_PRIVATE).getInt("firstVersion",34)).toString();}catch(Exception e){return "{}";}}
+    @JavascriptInterface public String getAppInfo31(){try{return new org.json.JSONObject().put("currentVersion",35).put("firstVersion",getSharedPreferences("app-release",MODE_PRIVATE).getInt("firstVersion",35)).toString();}catch(Exception e){return "{}";}}
     @JavascriptInterface public String beginSave(String name,String mime){
       final String token;synchronized(MainActivity.this){if(saveToken!=null)return "";token=UUID.randomUUID().toString();saveToken=token;}
       final String safe=name==null?"rose-phone-backup.json":name.replaceAll("[\\\\/:*?\"<>|\\p{Cntrl}]","_");
