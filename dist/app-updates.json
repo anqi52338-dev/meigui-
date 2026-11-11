@@ -1,7 +1,16 @@
 {
   "schema": 1,
-  "latest": 31,
+  "latest": 32,
   "releases": [
+    {
+      "version": 32,
+      "date": "2026-11-11",
+      "notes": [
+        "聊天操作移到长按菜单，去除重复按钮",
+        "三页API设置与三组聊天API切换",
+        "真实主动语音、系统字体与键盘避让"
+      ]
+    },
     {
       "version": 31,
       "date": "2026-11-11",
@@ -20,7 +29,7 @@
     }
   ],
   "apk": {
-    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v31.apk",
-    "sha256": "62dbcd73a61168f1ea351a965d4d30df2a3afa4ba0e7de2f5d8734224fe5743d"
+    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v32.apk",
+    "sha256": "f588d7786df4e9551c50f342a504e567dbd1ac50a977ed664e4478bfec8e73d3"
   }
 }

@@ -1,0 +1,22 @@
+.phone {font-size:14px}
+.phone .view h2 {font-size:21px}
+.phone input,.phone textarea,.phone select {font-size:14px!important}
+.phone .wx19.chat-page .bubble,.phone .wx19.chat-page .wx19-card-caption {font-size:14px!important;line-height:1.55}
+.phone .wx19 .nm,.phone .wx19 .nav-t,.phone .wx19 .row .label {font-size:15px!important}
+.phone .wx19 .ci {font-size:14px!important}
+.message-actions26 {display:flex;gap:12px;padding:5px 2px 0;justify-content:inherit}
+.message-actions26 button {border:0;background:transparent;color:var(--muted,#9b8590);padding:1px 0;font-size:11px!important;cursor:pointer}
+.message-actions26 button:disabled {opacity:.45;cursor:default}
+.reply-error26 {display:block;max-width:260px;font-size:11px;color:#a4526b;white-space:pre-wrap}
+.staged26 {display:flex;align-items:center;gap:8px;padding:8px 12px;background:var(--surface,#fff);font-size:12px}
+.staged26 img {width:44px;height:44px;object-fit:contain}
+.staged26 button {margin-left:auto;border:0;background:none;font-size:20px}
+.dock [data-wx="chat"].has-news::after {content:none!important;display:none!important}
+.reset26 {margin-top:16px;color:#a4526b!important}
+
+.phone .view {font-size:13px}
+.phone .view .menu-button,.phone .view label,.phone .view .primary,.phone .view .secondary {font-size:13px}
+.phone .post21-body>p {font-size:14px}
+
+dialog {font-size:14px}
+dialog :is(input,textarea,select,button) {font-size:14px}

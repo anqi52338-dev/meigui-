@@ -1,0 +1,8 @@
+const A=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+let focused=true,input={},classes=new Set(['native30']),properties={},handlers={},list={scrollTop:0,scrollHeight:900};
+const c={innerHeight:800,innerWidth:390,visualViewport:{height:460,offsetTop:0,addEventListener:(n,f)=>handlers['v'+n]=f},navigator:{},matchMedia:()=>({matches:false}),requestAnimationFrame:f=>{f();return 1},cancelAnimationFrame:()=>{},setTimeout:f=>f(),document:{get activeElement(){return focused?input:null},querySelector:q=>q==='#composer textarea'?input:q==='#messages'?list:null,addEventListener:(n,f)=>handlers[n]=f,createElement:()=>({}),head:{append:()=>{}},documentElement:{style:{setProperty:(k,v)=>properties[k]=v},classList:{contains:k=>classes.has(k),toggle:(k,on)=>on?classes.add(k):classes.delete(k)}}},addEventListener:(n,f)=>handlers[n]=f};c.window=c;vm.createContext(c);vm.runInContext(fs.readFileSync('dist/keyboard32.js','utf8'),c);
+handlers.focusin();A.equal(properties['--keyboard-height32'],'460px');A.ok(classes.has('typing32'));A.equal(list.scrollTop,900);
+c.innerHeight=400;c.visualViewport.height=400;handlers.resize();A.equal(properties['--keyboard-height32'],'400px');
+focused=false;handlers.focusout();A.ok(!classes.has('typing32'));
+focused=true;classes.delete('native30');c.innerWidth=390;c.innerHeight=800;c.visualViewport.height=420;c.visualViewport.offsetTop=30;handlers.vresize();A.equal(properties['--keyboard-height32'],'420px');A.equal(properties['--keyboard-top32'],'30px');A.ok(classes.has('typing32'));
+console.log('v32 keyboard: overlay and resized viewports, offset, focus restoration and message scroll passed');

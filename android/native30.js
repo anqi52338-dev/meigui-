@@ -15,7 +15,7 @@
  download=async function(name,data){return saveNativeBlob30(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),name)};
  const anchorClick=HTMLAnchorElement.prototype.click;HTMLAnchorElement.prototype.click=function(){if(this.download&&/^blob:|^data:/.test(this.href)){fetch(this.href).then(r=>r.blob()).then(b=>saveNativeBlob30(b,this.download)).catch(e=>toast(e.message));return}return anchorClick.call(this)};
  registerShell29=async()=>null;
- install27=function(){if(typeof updatePanel31==='function')return updatePanel31();wxPanel('<h3>已安装安卓应用 v31</h3><p>更新请覆盖安装同签名版本，不要先卸载。</p>')};
+ install27=function(){if(typeof updatePanel31==='function')return updatePanel31();wxPanel('<h3>已安装安卓应用 v32</h3><p>更新请覆盖安装同签名版本，不要先卸载。</p>')};
  document.documentElement.classList.add('native30');
  const style=document.createElement('style');style.textContent=':root.native30 .intro,:root.native30 .phone>.status{display:none!important}:root.native30 body{margin:0;padding:0;background:#fff8fb}:root.native30 .page{display:block!important;padding:0!important;max-width:none!important;width:100%}:root.native30 .phone{border:0!important;border-radius:0!important;box-shadow:none!important;width:100%!important;max-width:none!important;height:100vh!important;height:100dvh!important;max-height:none!important;margin:0!important}';document.head.append(style);
  // The WebView bounds already exclude Android system bars and keyboard.
