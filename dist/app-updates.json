@@ -1,7 +1,15 @@
 {
   "schema": 1,
-  "latest": 33,
+  "latest": 34,
   "releases": [
+    {
+      "version": 34,
+      "date": "2026-11-11",
+      "notes": [
+        "世界书支持JSON/TXT预览导入",
+        "上传表情包与文字使用独立气泡，emoji保持原样"
+      ]
+    },
     {
       "version": 33,
       "date": "2026-11-11",
@@ -36,7 +44,7 @@
     }
   ],
   "apk": {
-    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v33.apk",
-    "sha256": "5c50e5d32005d18715fb04699a12f16084f369b70d373ce7560ec7e0fc65a0e7"
+    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v34.apk",
+    "sha256": "72d193803b18cb01dbc4dc894d83ffe6aa416f6f4dc6831e8c77c9e45a473d18"
   }
 }

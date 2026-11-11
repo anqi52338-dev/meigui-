@@ -1,0 +1,10 @@
+const A=require('node:assert/strict'),B=require('../dist/book34-core.js');
+const rows=B.parse(JSON.stringify({entries:{0:{comment:'王国',content:'玫瑰王国',key:['王都'],constant:false},1:{comment:'高级',content:'秘密',key:['秘密'],selective:true,keysecondary:['门']}}}),'book.json');
+A.equal(rows[0].mode,'keywords');A.equal(rows[0].keys,'王都');A.equal(rows[1].enabled,false);A.equal(rows[1].advanced,true);
+A.equal(B.parse(JSON.stringify({character_book:{entries:[{name:'人物',content:'设定',constant:true}]}}),'card.json')[0].mode,'always');
+A.throws(()=>B.parse('{oops','x.json'),/格式/);A.throws(()=>B.parse('{}','x.json'),/未找到/);A.throws(()=>B.parse('[{"content":"设定","mode":"keywords"}]','x.json'),/没有关键词/);A.throws(()=>B.parse('x'.repeat(B.MAX+1),'x.txt'),/2MB/);
+const txt=B.parse('字'.repeat(7999)+'😊后续','小说.txt');A.equal(txt.length,2);A.equal(txt.map(x=>x.content).join(''),'字'.repeat(7999)+'😊后续');A.ok(txt.every(x=>x.content.length<=8000));
+let i=0;const local=B.merge([],rows,'local','role:new',()=>String(++i));A.equal(local.next[0].roleId,'new');A.equal(local.next[0].groupId,'');A.equal(B.merge(local.next,rows,'local','role:new',()=>String(++i)).added,0);A.equal(local.next.length,2);A.throws(()=>B.merge([],rows,'local','',()=>''),/范围/);
+const prior=[{id:'original',name:'旧条目',content:'保留'}];B.merge(prior,rows,'global','',()=>String(++i));A.equal(prior.length,1);
+A.equal(B.separate({sticker:{custom:true},role:'user'}),true);A.equal(B.separate({sticker:{custom:true},role:'assistant'}),true);A.equal(B.separate({sticker:{custom:false}}),false);A.equal(B.separate({content:'你好😊'}),false);A.equal(B.separate({kind:'recall',sticker:{custom:true}}),false);
+console.log('v34: supported worldbook formats, invalid inputs, surrogate-safe TXT split, explicit local binding, deduplication, disabled advanced conditions and custom-only bubble policy passed');

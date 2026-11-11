@@ -23,4 +23,4 @@ function updateButton31(){if(screen.querySelector('[data-update31]'))return;cons
 const me31=renderMe;renderMe=function(){me31();updateButton31()};
 const wxMe31=renderWxMe;renderWxMe=function(){wxMe31();updateButton31()};
 const settings31=wxSettings;wxSettings=function(){settings31();updateButton31()};
-const installBase31=install27;install27=function(){const result=installBase31();document.querySelectorAll('a[href*="downloads/rose-phone-android-v30.apk"],a[href*="downloads/rose-phone-android-v31.apk"]').forEach(a=>{a.href=new URL('downloads/rose-phone-android-v33.apk',location.href).href;a.download='rose-phone-android-v33.apk'});return result};
+const installBase31=install27;install27=function(){const result=installBase31();document.querySelectorAll('a[href*="downloads/rose-phone-android-v30.apk"],a[href*="downloads/rose-phone-android-v31.apk"]').forEach(a=>{a.href=new URL('downloads/rose-phone-android-v34.apk',location.href).href;a.download='rose-phone-android-v34.apk'});return result};
