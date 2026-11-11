@@ -19,10 +19,10 @@ unsigned=build/'unsigned.apk';shutil.copyfile(base,unsigned)
 with zipfile.ZipFile(unsigned,'a',zipfile.ZIP_DEFLATED) as z:
     z.write(dex/'classes.dex','classes.dex')
     for f in sorted((repo/'dist').rglob('*')):
-        if not f.is_file() or f.suffix.lower() in ('.apk','.zip','.gz') or 'downloads' in f.relative_to(repo/'dist').parts:continue
+        if not f.is_file() or f.name=='app-updates.json' or f.suffix.lower() in ('.apk','.zip','.gz') or 'downloads' in f.relative_to(repo/'dist').parts:continue
         name=f.relative_to(repo/'dist').as_posix();data=f.read_bytes()
-        if name=='index.html':data=data.decode('utf-8').replace('</body>','<script src="native30.js"></script></body>').encode('utf-8')
-        if name=='upgrade22.js':
+        if name in ('index.html','layout30.html'):data=data.decode('utf-8').replace('</body>','<script src="native30.js"></script></body>').encode('utf-8')
+        if name in ('upgrade22.js','legacy30/upgrade22.js'):
             text=data.decode('utf-8');needle="download('玫瑰小手机-完整搬家-";assert text.count(needle)==1;text=text.replace(needle,'await '+needle);data=text.encode('utf-8')
         z.writestr('assets/www/'+name,data)
     z.write(src/'native30.js','assets/www/native30.js')

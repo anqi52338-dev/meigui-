@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "latest": 31,
+  "releases": [
+    {
+      "version": 31,
+      "date": "2026-11-11",
+      "notes": [
+        "修正安卓顶部安全区与首页高度",
+        "信封图标；检查更新与旧版布局切换",
+        "识图使用已设置输出上限；DeepSeek 检测请求关闭思考"
+      ]
+    },
+    {
+      "version": 30,
+      "date": "2026-11-10",
+      "notes": [
+        "安卓独立安装包；系统文件导出与一键搬家"
+      ]
+    }
+  ],
+  "apk": {
+    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v31.apk",
+    "sha256": "62dbcd73a61168f1ea351a965d4d30df2a3afa4ba0e7de2f5d8734224fe5743d"
+  }
+}

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.webkit.*;
 import android.widget.Toast;
+import android.widget.FrameLayout;
 import java.io.*;
 import java.net.URLConnection;
 import java.util.*;
@@ -26,10 +27,26 @@ public class MainActivity extends Activity {
 
   @Override public void onCreate(Bundle state) {
     super.onCreate(state);
-    web=new WebView(this);setContentView(web);web.setBackgroundColor(0xfffff8fb);
+    FrameLayout frame=new FrameLayout(this);frame.setBackgroundColor(0xfffff8fb);
+    web=new WebView(this);frame.addView(web,new FrameLayout.LayoutParams(-1,-1));setContentView(frame);web.setBackgroundColor(0xfffff8fb);
     int uiFlags=android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;if(android.os.Build.VERSION.SDK_INT>=26)uiFlags|=android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
     getWindow().getDecorView().setSystemUiVisibility(uiFlags);
-    web.setOnApplyWindowInsetsListener((v,insets)->{v.setPadding(insets.getSystemWindowInsetLeft(),insets.getSystemWindowInsetTop(),insets.getSystemWindowInsetRight(),insets.getSystemWindowInsetBottom());return insets.consumeSystemWindowInsets();});
+    if(android.os.Build.VERSION.SDK_INT>=30)getWindow().setDecorFitsSystemWindows(false);
+    else getWindow().getDecorView().setSystemUiVisibility(uiFlags|android.view.View.SYSTEM_UI_FLAG_LAYOUT_STABLE|android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
+    frame.setOnApplyWindowInsetsListener((v,insets)->{
+      if(android.os.Build.VERSION.SDK_INT>=30){
+        android.graphics.Insets bars=insets.getInsets(android.view.WindowInsets.Type.systemBars()|android.view.WindowInsets.Type.displayCutout());
+        android.graphics.Insets ime=insets.getInsets(android.view.WindowInsets.Type.ime());
+        v.setPadding(bars.left,bars.top,bars.right,Math.max(bars.bottom,ime.bottom));
+      }else{
+        // Legacy adjustResize already subtracts the keyboard from the root bounds.
+        int nav=getResources().getIdentifier("navigation_bar_height","dimen","android");
+        int bottom=nav==0?insets.getSystemWindowInsetBottom():Math.min(insets.getSystemWindowInsetBottom(),getResources().getDimensionPixelSize(nav));
+        v.setPadding(insets.getSystemWindowInsetLeft(),insets.getSystemWindowInsetTop(),insets.getSystemWindowInsetRight(),bottom);
+      }
+      return android.os.Build.VERSION.SDK_INT>=30?android.view.WindowInsets.CONSUMED:insets.consumeSystemWindowInsets();
+    });frame.requestApplyInsets();
+    rememberFirstVersion31();
     WebSettings s=web.getSettings();s.setJavaScriptEnabled(true);s.setDomStorageEnabled(true);s.setDatabaseEnabled(true);
     s.setAllowFileAccess(false);s.setAllowContentAccess(true);s.setMixedContentMode(WebSettings.MIXED_CONTENT_NEVER_ALLOW);
     s.setMediaPlaybackRequiresUserGesture(false);s.setSupportMultipleWindows(false);
@@ -80,7 +97,14 @@ public class MainActivity extends Activity {
     if(code==SAVE){String token;boolean ok=false;synchronized(this){token=saveToken;if(result==RESULT_OK&&data!=null&&data.getData()!=null)try{saveStream=getContentResolver().openOutputStream(data.getData(),"wt");ok=saveStream!=null;}catch(Exception ignored){}if(!ok){saveToken=null;closeSave();}}if(token!=null){final String js="window.nativeSaveReady30&&window.nativeSaveReady30("+org.json.JSONObject.quote(token)+","+ok+")";web.evaluateJavascript(js,null);}}
   }
   private synchronized void closeSave(){if(saveStream!=null)try{saveStream.close();}catch(IOException ignored){}saveStream=null;}
+  private void rememberFirstVersion31(){
+    android.content.SharedPreferences p=getSharedPreferences("app-release",MODE_PRIVATE);
+    if(p.contains("firstVersion"))return;
+    int first=31;try{android.content.pm.PackageInfo i=getPackageManager().getPackageInfo(getPackageName(),0);if(i.firstInstallTime<i.lastUpdateTime)first=30;}catch(Exception ignored){}
+    p.edit().putInt("firstVersion",first).commit();
+  }
   public class SaveBridge {
+    @JavascriptInterface public String getAppInfo31(){try{return new org.json.JSONObject().put("currentVersion",31).put("firstVersion",getSharedPreferences("app-release",MODE_PRIVATE).getInt("firstVersion",31)).toString();}catch(Exception e){return "{}";}}
     @JavascriptInterface public String beginSave(String name,String mime){
       final String token;synchronized(MainActivity.this){if(saveToken!=null)return "";token=UUID.randomUUID().toString();saveToken=token;}
       final String safe=name==null?"rose-phone-backup.json":name.replaceAll("[\\\\/:*?\"<>|\\p{Cntrl}]","_");

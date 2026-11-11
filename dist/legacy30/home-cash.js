@@ -1,0 +1,8 @@
+(function(root){
+ function clone(x){return JSON.parse(JSON.stringify(x))}
+ function ledger(w,delta,id,note,at){if(!Number.isSafeInteger(delta)||!Number.isSafeInteger(w.balance+delta)||w.balance+delta<0)throw Error('零钱余额不足或金额超出可精确记录范围');const n=clone(w);n.balance+=delta;if(delta)n.ledger.push({id,messageId:id,type:'home',delta,balance:n.balance,note,createdAt:at});return n}
+ function migrate(wallet,home,hadHome,at=Date.now()){const h=clone(home);if(h.currencyVersion===1){delete h.points;return {wallet,home:h}}const points=hadHome&&Number.isSafeInteger(h.points)&&h.points>0?h.points:0;const w=points&&!wallet.ledger.some(x=>x.messageId==='home-currency-migration')?ledger(wallet,points*100,'home-currency-migration','旧家园积分一次性兑换（1 积分 = 1 元）',at):wallet;delete h.points;h.currencyVersion=1;return {wallet:w,home:h}}
+ function apply(engine,wallet,home,action,id,at=Date.now()){if(home.currencyVersion!==1)throw Error('请先完成家园金钱迁移');const bank=1000000000,working={...clone(home),points:bank},r=engine.apply(working,action,at),delta=(r.state.points-bank)*100,w=ledger(wallet,delta,id,'家园：'+r.message.replace(/积分/g,'元'),at);delete r.state.points;r.state.currencyVersion=1;r.message=r.message.replace(/积分/g,'元');r.state.log[0].text=r.message;return {wallet:w,state:r.state,message:r.message}}
+ function purchaseStyle(wallet,home,key,id,at,clothes){if(!clothes[key])throw Error('服装不存在');const h=clone(home);if(h.owned.includes(key))return {wallet,home:h};const w=ledger(wallet,-clothes[key].price*100,id,'购买家园服装：'+clothes[key].name,at);h.owned.push(key);return {wallet:w,home:h}}
+ const api={ledger,migrate,apply,purchaseStyle};root.PalaisHomeCash=api;if(typeof module!=='undefined')module.exports=api;
+})(typeof window!=='undefined'?window:globalThis);
