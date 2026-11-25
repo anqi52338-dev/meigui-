@@ -25,7 +25,7 @@ const chatView37=renderConversation;renderConversation=function(){
 // Remove unavailable discovery entries rather than presenting dead-end actions.
 const wechat37=renderWechat;renderWechat=function(){wechat37();if(wxTab==='discover'){screen.querySelectorAll('[data-wx19-action="scan"],[data-wx19-action="shake"],[data-wx19-action="nearby"]').forEach(b=>b.remove());screen.querySelectorAll('.wx-body>.group').forEach(g=>{if(!g.children.length)g.remove()})}};
 const addMenu37=wx19AddMenu;wx19AddMenu=function(){addMenu37();screen.querySelector('[data-wx19-action="scan"]')?.remove()};
-icons21.diary=face24('joy');const diaryIcon37=screen.querySelector('.desk-app-diary>.art21-icon');if(diaryIcon37)diaryIcon37.innerHTML=icons21.diary;
+icons21.diary='<svg class="diary-icon38" viewBox="0 0 64 64" width="34" height="34" fill="none" aria-hidden="true"><rect x="13" y="8" width="39" height="48" rx="8" fill="#fff5f8" stroke="#c77999" stroke-width="2.2"/><path d="M22 9v46" stroke="#e9bacd" stroke-width="2"/><path d="M39 20c-5-6-13 2-8 7l8 7 8-7c5-5-3-13-8-7Z" fill="#e7a5bf"/><path d="M29 42h15M29 47h10" stroke="#c77999" stroke-width="2" stroke-linecap="round"/><path d="M13 20h6M13 31h6M13 42h6" stroke="#c77999" stroke-width="2.2" stroke-linecap="round"/></svg>';const diaryIcon37=screen.querySelector('.desk-app-diary>.art21-icon');if(diaryIcon37)diaryIcon37.innerHTML=icons21.diary;
 const css37=document.createElement('style');css37.textContent=`
 :root[data-theme] #screen .wx19.chat-page .bubble.sticker-only34,:root #screen .wx19.chat-page .sticker-row37 .bubble{background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;border-radius:0!important;outline:0!important}
 :root #screen .wx19.chat-page .sticker-row37 .bubble:before,:root #screen .wx19.chat-page .sticker-row37 .bubble:after{display:none!important}
@@ -33,6 +33,6 @@ const css37=document.createElement('style');css37.textContent=`
 :root[data-theme] #screen .wx19.chat-page .message-body>.quote35{font-size:calc(var(--font27,13px) * .82)!important;line-height:1.45!important;color:var(--f-muted,#95838c)!important;background:color-mix(in srgb,var(--f-ink,#704557) 5%,white)!important;border:0!important;box-shadow:none!important;border-radius:4px;padding:5px 8px;margin:3px 0 0;max-width:100%;overflow-wrap:anywhere}
 :root[data-theme] #screen .wx19 .wx-search input{padding-left:8px!important;text-indent:0!important;margin:0!important}
 .crop-dialog25 canvas{border-radius:0!important}
-.desk-app-diary .art21-icon>.mood-icon36{width:48px!important;height:46px!important;object-fit:contain!important}
+:root[data-theme] #screen .desk-app-diary>.art21-icon{display:grid!important;place-items:center!important;overflow:hidden!important;line-height:0!important;padding:0!important}#screen .desk-app-diary .diary-icon38{display:block!important;width:34px!important;height:34px!important;max-width:80%!important;max-height:80%!important;margin:0!important;transform:none!important;filter:none!important}
 .journal-memory37 p{white-space:pre-wrap;overflow-wrap:anywhere}
 `;document.head.append(css37);

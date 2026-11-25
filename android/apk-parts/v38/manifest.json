@@ -1,0 +1,85 @@
+{
+  "version": 38,
+  "sha256": "ab7db127ea4b8db044364015cff20944e7108b400a09b4ef9a9c7b240a9ef805",
+  "size": 11844552,
+  "parts": [
+    {
+      "name": "part-000.bin",
+      "size": 983040,
+      "sha256": "ef47cefb86180f92e95bae5d8585834c13179d3789cd0da0d33fcd3d035d4a3b",
+      "gitsha": "fc628c25c3da1e31b277d426d378552f5dfd2826"
+    },
+    {
+      "name": "part-001.bin",
+      "size": 983040,
+      "sha256": "f92585d57d5f6fd8e63ca135da43572d4b0e331d7659c746dff007f3fbe191fb",
+      "gitsha": "6d08f8ce5d18ddbda7f3cd0b83ff0ce19b7a5fa9"
+    },
+    {
+      "name": "part-002.bin",
+      "size": 983040,
+      "sha256": "8418933f7c3ad058871a1f1002ffe23085c2bf0f890ca22edbfd5cf47e9dc6ed",
+      "gitsha": "70ea8bcc9edc7f761cb5cbf80e51345c25236cde"
+    },
+    {
+      "name": "part-003.bin",
+      "size": 983040,
+      "sha256": "c13a5f58c610b5791bb1115b1a1970d5934936eadd69da0be963639fba0b0271",
+      "gitsha": "a7b2b6d8522ee31fe10793bbed0cca04ff38a1c0"
+    },
+    {
+      "name": "part-004.bin",
+      "size": 983040,
+      "sha256": "a5144609da1dea82be132a5ae0ac940f8f9c0743077722aadf59c7d34b5ca1f6",
+      "gitsha": "01eeb3d9587ff31174cfe4d03c653e447af405b3"
+    },
+    {
+      "name": "part-005.bin",
+      "size": 983040,
+      "sha256": "46896b5e7d007882a57ae3bca17cd1381320151f3b7e73b2c994b2c6d060c5d5",
+      "gitsha": "2ef664cae155b9c2cc6e48254428d5d8bbb1beef"
+    },
+    {
+      "name": "part-006.bin",
+      "size": 983040,
+      "sha256": "c934abaf03f672bfb325d5b79b3a7fc9d4696030296620971fe023f1a4d0c19e",
+      "gitsha": "e9b2a44286f7b48f429366ddfcd90b87e60e067f"
+    },
+    {
+      "name": "part-007.bin",
+      "size": 983040,
+      "sha256": "2527179598f67eb5eb38a2b59a8007fc3bad66e5c91ee6bd15eb118014851bf1",
+      "gitsha": "493a87ef005591955a0294d888f2bcbcb7fb464b"
+    },
+    {
+      "name": "part-008.bin",
+      "size": 983040,
+      "sha256": "d62c80e9636c50f8f76f4a0d77964097538e6474cdbed98cb0c971d041083296",
+      "gitsha": "0bf2b1148712311aa96943ef73f71d91e9f2d07a"
+    },
+    {
+      "name": "part-009.bin",
+      "size": 983040,
+      "sha256": "0f393825720cd994f6934e33a22693264afaca49995c8672f75a84f225f38233",
+      "gitsha": "2f135cc6f3e24fbe3668fadd29f69351169f9063"
+    },
+    {
+      "name": "part-010.bin",
+      "size": 983040,
+      "sha256": "05f48db06206643c142df76f2884f0d998422ba79b803b3aa00a6a8677c0ac60",
+      "gitsha": "d17b0be6a28803dd8b8554a52eda9d19d59ccca0"
+    },
+    {
+      "name": "part-011.bin",
+      "size": 983040,
+      "sha256": "212846f304e42bdcb502c3639abe2abbd86fa3acaea303e2c4e8cfb8fa1102f2",
+      "gitsha": "8d4cbd34918ab197828b9998e55b68330caa432f"
+    },
+    {
+      "name": "part-012.bin",
+      "size": 48072,
+      "sha256": "2490c252f12dcc28352ad5822a5a1d5424cb29e14bcab2eb60a7371954dfbe97",
+      "gitsha": "d156f5a0cf20d7633861f06ea214f3bb188d5b5f"
+    }
+  ]
+}

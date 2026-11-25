@@ -1,7 +1,14 @@
 {
   "schema": 1,
-  "latest": 37,
+  "latest": 38,
   "releases": [
+    {
+      "version": 38,
+      "date": "2026-11-25",
+      "notes": [
+        "心情日记改用粉色爱心日记本图标，修复小屏图标溢出重叠"
+      ]
+    },
     {
       "version": 37,
       "date": "2026-11-25",
@@ -70,7 +77,7 @@
     }
   ],
   "apk": {
-    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v37.apk",
-    "sha256": "75935d993908b54dcbc5a52d59afd6a10ebf3f9a018ef70cb35d287e2e28db83"
+    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v38.apk",
+    "sha256": "ab7db127ea4b8db044364015cff20944e7108b400a09b4ef9a9c7b240a9ef805"
   }
 }
