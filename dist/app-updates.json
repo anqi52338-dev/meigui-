@@ -1,7 +1,15 @@
 {
   "schema": 1,
-  "latest": 35,
+  "latest": 36,
   "releases": [
+    {
+      "version": 36,
+      "date": "2026-11-25",
+      "notes": [
+        "原图裁切30个心情标识，卡片选择单人或所有角色",
+        "邀请或聊天触发角色心情日记，保存后按人设确认"
+      ]
+    },
     {
       "version": 35,
       "date": "2026-11-11",
@@ -53,7 +61,7 @@
     }
   ],
   "apk": {
-    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v35.apk",
-    "sha256": "a45f579a06931bea2865564e17652d5defb74f97c49e806f4b1b8599816feb10"
+    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v36.apk",
+    "sha256": "46de6f912ab280101d1695dcb04e8356c8fe9c021ba30b9cb727b6a68a476c84"
   }
 }
