@@ -1,7 +1,16 @@
 {
   "schema": 1,
-  "latest": 36,
+  "latest": 37,
   "releases": [
+    {
+      "version": 37,
+      "date": "2026-11-25",
+      "notes": [
+        "表情独立头像与透明消息行，引用缩小变浅、头像方形裁剪",
+        "心情日记接入角色独立记忆，按话题回忆旧摘要和日记",
+        "精简发现入口、修正搜索位置与心情图标、清理主动消息姓名标签"
+      ]
+    },
     {
       "version": 36,
       "date": "2026-11-25",
@@ -61,7 +70,7 @@
     }
   ],
   "apk": {
-    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v36.apk",
-    "sha256": "46de6f912ab280101d1695dcb04e8356c8fe9c021ba30b9cb727b6a68a476c84"
+    "url": "https://anqi52338-dev.github.io/meigui-/downloads/rose-phone-android-v37.apk",
+    "sha256": "75935d993908b54dcbc5a52d59afd6a10ebf3f9a018ef70cb35d287e2e28db83"
   }
 }
